@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'xway'
+puts "xway #{Xway::VERSION}"
