@@ -15,3 +15,8 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 end
+
+# just add the lib folder to the load path
+# -> actual 'require' calls will be done within each spec (speed + modularity)
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
