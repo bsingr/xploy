@@ -13,4 +13,17 @@ describe Xway::Api do
   its('applications.stop')     { should ==    'POST /applications/:name/stop'}
   its('applications.restart')  { should ==    'POST /applications/:name/restart'}
   its('applications.redeploy') { should ==    'POST /applications/:name/redeploy'}
+
+  %w[ find    
+      update
+      delete
+      log
+      start
+      stop
+      restart
+      redeploy ].each do |method_name|
+    specify "#{method_name} accepts :name" do
+      subject.send(method_name, 'foo123').should include('/applications/foo123')
+    end
+  end
 end

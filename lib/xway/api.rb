@@ -1,47 +1,47 @@
 module Xway
   class Api < String
     def initialize str=nil
-      super str || ''
+      super str || ""
     end
 
     def applications
-      chain 'GET /applications'
+      chain "GET /applications"
     end
 
     def create
-      chain 'POST /applications'
+      chain "POST /applications"
     end
 
-    def find
-      chain 'GET /applications/:name'
+    def find name=":name"
+      chain "GET /applications/#{name}"
     end
 
-    def update
-      chain 'PUT /applications/:name'
+    def update name=":name"
+      chain "PUT /applications/#{name}"
     end
 
-    def delete
-      chain 'DELETE /applications/:name'
+    def delete name=":name"
+      chain "DELETE /applications/#{name}"
     end
 
-    def log
-      chain 'GET /applications/:name/log'
+    def log name=":name"
+      chain "GET /applications/#{name}/log"
     end
 
-    def start
-      chain 'POST /applications/:name/start'
+    def start name=":name"
+      chain "POST /applications/#{name}/start"
     end
 
-    def stop
-      chain 'POST /applications/:name/stop'
+    def stop name=":name"
+      chain "POST /applications/#{name}/stop"
     end
 
-    def restart
-      chain 'POST /applications/:name/restart'
+    def restart name=":name"
+      chain "POST /applications/#{name}/restart"
     end
 
-    def redeploy
-      chain 'POST /applications/:name/redeploy'
+    def redeploy name=":name"
+      chain "POST /applications/#{name}/redeploy"
     end
 
   private
