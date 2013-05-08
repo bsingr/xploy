@@ -2,17 +2,16 @@ require 'spec_helper'
 require 'xway/api'
 
 describe Xway::Api do
-  it { should == ''}
-  its('applications')          { should ==     'GET /applications' }
-  its('applications.create')   { should ==    'POST /applications' }
-  its('applications.find')     { should ==     'GET /applications/:name' }
-  its('applications.update')   { should ==     'PUT /applications/:name' }
-  its('applications.delete')   { should ==  'DELETE /applications/:name' }
-  its('applications.log')      { should ==     'GET /applications/:name/log'}
-  its('applications.start')    { should ==    'POST /applications/:name/start'}
-  its('applications.stop')     { should ==    'POST /applications/:name/stop'}
-  its('applications.restart')  { should ==    'POST /applications/:name/restart'}
-  its('applications.redeploy') { should ==    'POST /applications/:name/redeploy'}
+  its('list')     { should ==     'GET /applications' }
+  its('create')   { should ==    'POST /applications' }
+  its('find')     { should ==     'GET /applications/:name' }
+  its('update')   { should ==     'PUT /applications/:name' }
+  its('delete')   { should ==  'DELETE /applications/:name' }
+  its('log')      { should ==     'GET /applications/:name/log'}
+  its('start')    { should ==    'POST /applications/:name/start'}
+  its('stop')     { should ==    'POST /applications/:name/stop'}
+  its('restart')  { should ==    'POST /applications/:name/restart'}
+  its('redeploy') { should ==    'POST /applications/:name/redeploy'}
 
   %w[ find    
       update
