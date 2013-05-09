@@ -5,7 +5,9 @@ module Xway
       @out = out
     end
 
-    def start commands=[]
+    def start
+      Xway::Settings.load!
+      commands = ::Settings.rest
       if commands.empty?
         execute ['version']
       else
