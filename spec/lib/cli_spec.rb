@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'xway/cli'
+require 'xway/version'
 
 describe Xway::Cli do
   let('out') { double('stdout').tap { |o| o.stub('puts') } }
