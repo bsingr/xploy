@@ -2,6 +2,8 @@
 
 [appway](http://github.com/threez/appway) client written in ruby
 
+[![Travis-CI Build Status](https://secure.travis-ci.org/dpree/xway.png)](https://secure.travis-ci.org/dpree/xway)
+
 ## Installation
 
 Add this line to your application's Gemfile:
