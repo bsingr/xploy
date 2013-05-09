@@ -16,6 +16,11 @@ RSpec.configure do |config|
   config.order = 'random'
 end
 
+if ENV['CI']
+  require 'coveralls'
+  Coveralls.wear!
+end
+
 # just add the lib folder to the load path
 # -> actual 'require' calls will be done within each spec (speed + modularity)
 lib = File.expand_path('../lib', __FILE__)
