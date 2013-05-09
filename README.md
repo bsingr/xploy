@@ -3,6 +3,7 @@
 [appway](http://github.com/threez/appway) client written in ruby
 
 [![Travis-CI Build Status](https://secure.travis-ci.org/dpree/xway.png)](https://secure.travis-ci.org/dpree/xway)
+[![Dependency Status](https://gemnasium.com/dpree/xway.png)](https://gemnasium.com/dpree/xway)
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/dpree/xway)
 
 ## Installation
