@@ -1,5 +1,10 @@
 module Xway
   class Cli
+    def initialize api=Api.new, out=STDOUT
+      @api = api
+      @out = out
+    end
+
     def start commands=[]
       if commands.empty?
         execute ['version']
@@ -11,21 +16,10 @@ module Xway
     def execute commands
       command = commands.first
       if command == 'version'
-        out.puts "xway #{VERSION}"
+        @out.puts "xway #{VERSION}"
       else
-        out.puts api.send(commands.first)
+        @out.puts @api.send(commands.first)
       end
     end
-
-  private
-
-    def out
-      STDOUT
-    end
-
-    def api
-      Api.new
-    end
-
   end
 end

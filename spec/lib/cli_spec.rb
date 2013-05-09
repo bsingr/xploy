@@ -3,11 +3,11 @@ require 'xway/cli'
 require 'xway/version'
 
 describe Xway::Cli do
+  let('api') { double('api') }
   let('out') { double('stdout').tap { |o| o.stub('puts') } }
-  before { subject.stub('out') { out } }
+  subject { described_class.new api, out }
 
   it 'executes commands using api' do
-    api = double('api')
     api.should_receive('list')
     subject.stub('api') { api }
     subject.execute ['list']
