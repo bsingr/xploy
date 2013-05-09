@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Xway::VERSION
   gem.authors       = ["Jens Bissinger"]
   gem.email         = ["mail@jens-bissinger.de"]
-  gem.description   = %q{appway client}
-  gem.summary       = %q{see github.com/threez/appway}
+  gem.description   = %q{Appway client.}
+  gem.summary       = %q{Provides the xway command. See github.com/threez/appway.}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
