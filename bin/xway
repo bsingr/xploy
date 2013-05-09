@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
 require 'xway'
-puts "xway #{Xway::VERSION}"
+Xway::Cli.new.start ARGV
