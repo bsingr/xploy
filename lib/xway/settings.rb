@@ -4,8 +4,8 @@ module Xway
   module Settings
     class << self
       def load!
-        ::Settings.read global_config
-        ::Settings.read local_config
+        ::Settings.read global_config if File.exists? global_config
+        ::Settings.read local_config if File.exists? local_config
         ::Settings.use(:commandline)
         ::Settings.resolve!
       end

@@ -8,6 +8,7 @@ describe Xway::Settings do
   it 'loads configliere Settings' do
     described_class.stub('global_config') { 'global-xway-conf' }
     described_class.stub('local_config') { 'local-xway-conf' }
+    File.stub('exists?') { true }
     ::Settings.should_receive('read').with('global-xway-conf')
     ::Settings.should_receive('read').with('local-xway-conf')
     ::Settings.should_receive('use').with(:commandline)
