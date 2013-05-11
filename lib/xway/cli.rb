@@ -19,7 +19,7 @@ module Xway
       if command == 'version'
         @out.puts "xway #{VERSION}"
       else
-        @out.puts @api.send(commands.first)
+        @out.puts @api.send(*commands)
       end
     end
   end

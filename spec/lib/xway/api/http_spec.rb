@@ -18,4 +18,8 @@ describe Xway::Api::Http do
 
   its('options') { should eq(headers: default_headers)}
   its('default_headers') { should eq(default_headers) }
+
+  it 'merges X-App' do
+    subject.options('foo').should eq(headers: {'X-App' => 'foo'})
+  end
 end
