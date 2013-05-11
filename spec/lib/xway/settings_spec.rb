@@ -27,31 +27,31 @@ describe Xway::Settings do
       it 'reads global config when it exists' do
         File.stub('exists?').with('global-xway-conf').and_return(true)
         param.should_receive('read').with('global-xway-conf')
-        subject.load!
+        subject.reload!
       end
 
       it 'reads local config when it exists' do
         File.stub('exists?').with('local-xway-conf').and_return(true)
         param.should_receive('read').with('local-xway-conf')
-        subject.load!
+        subject.reload!
       end
 
       it 'uses commandline' do
         param.should_receive('use').with(:commandline)
-        subject.load!
+        subject.reload!
       end
 
       it 'calls resolve' do
         param.should_receive('resolve!')
-        subject.load!
+        subject.reload!
       end
     end
 
-    context 'after load!' do
+    context 'after reload!' do
       before do
         param.stub('[]').with(:servers).and_return('http://bar')
         param.stub('rest').and_return([1,2,3])
-        subject.load!
+        subject.reload!
       end
       its('rest') { should eq([1,2,3]) }
       it { subject[:servers].should eq('http://bar') }

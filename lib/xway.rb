@@ -6,6 +6,6 @@ require 'xway/cli'
 
 module Xway
   def self.settings
-    @settings ||= Settings.new.load!
+    @settings ||= Settings.new.reload!
   end
 end

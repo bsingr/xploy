@@ -2,7 +2,7 @@ require 'configliere'
 
 module Xway
   class Settings
-    def load!
+    def reload!
       @settings = Configliere::Param.new
       @settings.read global_config if File.exists? global_config
       @settings.read local_config if File.exists? local_config
