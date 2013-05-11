@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'open3'
+require 'xway/version'
 
 module Xway
   class Runner
