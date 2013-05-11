@@ -12,6 +12,7 @@ describe Xway::Settings do
         param.stub('read')
         param.stub('resolve!')
         param.stub('[]')
+        param.stub('to_hash')
         param.stub('rest')
       end
     end
@@ -22,6 +23,10 @@ describe Xway::Settings do
       File.stub('exists?').with('local-xway-conf').and_return(false)
       Configliere::Param.stub('new').and_return(param)
     end
+
+    its('to_hash') { should eq({}) }
+    its('rest') { should eq([]) }
+    it { subject[:servers].should be_nil}
 
     describe 'loads!' do
       it 'reads global config when it exists' do
@@ -50,10 +55,12 @@ describe Xway::Settings do
     context 'after reload!' do
       before do
         param.stub('[]').with(:servers).and_return('http://bar')
+        param.stub('to_hash').and_return(servers: ['http://bar'])
         param.stub('rest').and_return([1,2,3])
         subject.reload!
       end
       its('rest') { should eq([1,2,3]) }
+      its('to_hash') { should eq(servers: ['http://bar']) }
       it { subject[:servers].should eq('http://bar') }
     end
   end

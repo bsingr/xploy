@@ -12,11 +12,27 @@ module Xway
     end
 
     def [] key
-      @settings[key]
+      if @settings
+        @settings[key]
+      else
+        nil
+      end
     end
 
     def rest
-      @settings.rest
+      if @settings
+        @settings.rest
+      else
+        []
+      end
+    end
+
+    def to_hash
+      if @settings
+        @settings.to_hash
+      else
+        {}
+      end
     end
 
     def global_config
