@@ -5,20 +5,26 @@ describe Xway::Api do
   context 'mock http' do
     let('http') do
       double('Http').tap do |mock|
-        mock.stub('request').and_return { |uri_str| ['response', "#{uri_str}"] }
+        mock.stub('request') do |server, endpoint|
+          ['$', server, endpoint]
+        end
       end
     end
     before { Xway::Api::Http.stub('new').and_return(http) }
+    before do
+      ::Settings = double('::Settings') unless defined? ::Settings
+      ::Settings.stub('[]').with(:servers) { ['http://foo'] }
+    end
 
-    its('list')     { should == ['response',    'GET /applications'] }
-    its('create')   { should == ['response',   'POST /applications'] }
-    its('find')     { should == ['response',    'GET /applications/:name'] }
-    its('update')   { should == ['response',    'PUT /applications/:name'] }
-    its('delete')   { should == ['response', 'DELETE /applications/:name'] }
-    its('log')      { should == ['response',    'GET /applications/:name/log'] }
-    its('start')    { should == ['response',   'POST /applications/:name/start'] }
-    its('stop')     { should == ['response',   'POST /applications/:name/stop'] }
-    its('restart')  { should == ['response',   'POST /applications/:name/restart'] }
-    its('redeploy') { should == ['response',   'POST /applications/:name/redeploy'] }
+    its('list')     { should == [['$', 'http://foo',    'GET /applications']] }
+    its('create')   { should == [['$', 'http://foo',   'POST /applications']] }
+    its('find')     { should == [['$', 'http://foo',    'GET /applications/:name']] }
+    its('update')   { should == [['$', 'http://foo',    'PUT /applications/:name']] }
+    its('delete')   { should == [['$', 'http://foo', 'DELETE /applications/:name']] }
+    its('log')      { should == [['$', 'http://foo',    'GET /applications/:name/log']] }
+    its('start')    { should == [['$', 'http://foo',   'POST /applications/:name/start']] }
+    its('stop')     { should == [['$', 'http://foo',   'POST /applications/:name/stop']] }
+    its('restart')  { should == [['$', 'http://foo',   'POST /applications/:name/restart']] }
+    its('redeploy') { should == [['$', 'http://foo',   'POST /applications/:name/redeploy']] }
   end
 end

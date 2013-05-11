@@ -4,8 +4,10 @@ require 'xway/api/http'
 module Xway
   class Api
     def method_missing method_name, *args, &block
-      uri_str = Endpoints.new.send(method_name, *args)
-      Http.new.request uri_str
+      endpoint = Endpoints.new.send(method_name, *args)
+      ::Settings[:servers].map do |server|
+        Http.new.request server, endpoint
+      end
     end
   end
 end
