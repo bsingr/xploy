@@ -4,6 +4,9 @@ module Xway
   class Settings
     def reload!
       @settings = Configliere::Param.new
+      @settings.define :servers, :type => Array,
+                                 :description => "all appway servers",
+                                 :default => ['http://localhost:8000']
       @settings.read global_config if File.exists? global_config
       @settings.read local_config if File.exists? local_config
       @settings.use(:commandline)

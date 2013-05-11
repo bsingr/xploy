@@ -8,6 +8,7 @@ describe Xway::Settings do
   context 'mocked Configliere::Param' do
     let('param') do
       double('Configliere::Param').tap do |param|
+        param.stub('define')
         param.stub('use')
         param.stub('read')
         param.stub('resolve!')
@@ -48,6 +49,13 @@ describe Xway::Settings do
 
       it 'calls resolve' do
         param.should_receive('resolve!')
+        subject.reload!
+      end
+
+      it 'defines :servers' do
+        param.should_receive('define').with(:servers, type: Array,
+                                            description: "all appway servers",
+                                            default: ['http://localhost:8000'])
         subject.reload!
       end
     end
