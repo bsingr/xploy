@@ -1,22 +1,30 @@
 require 'configliere'
 
 module Xway
-  module Settings
-    class << self
-      def load!
-        ::Settings.read global_config if File.exists? global_config
-        ::Settings.read local_config if File.exists? local_config
-        ::Settings.use(:commandline)
-        ::Settings.resolve!
-      end
+  class Settings
+    def load!
+      @settings = Configliere::Param.new
+      @settings.read global_config if File.exists? global_config
+      @settings.read local_config if File.exists? local_config
+      @settings.use(:commandline)
+      @settings.resolve!
+      self
+    end
 
-      def global_config
-        ENV['XWAY_CONFIG'] || File.join(ENV['HOME'], '.xway')
-      end
+    def [] key
+      @settings[key]
+    end
 
-      def local_config
-        File.join(Dir.pwd, '.xway')
-      end
+    def rest
+      @settings.rest
+    end
+
+    def global_config
+      ENV['XWAY_CONFIG'] || File.join(ENV['HOME'], '.xway')
+    end
+
+    def local_config
+      File.join(Dir.pwd, '.xway')
     end
   end
 end

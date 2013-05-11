@@ -12,8 +12,9 @@ describe Xway::Api do
     end
     before { Xway::Api::Http.stub('new').and_return(http) }
     before do
-      ::Settings = double('::Settings') unless defined? ::Settings
-      ::Settings.stub('[]').with(:servers) { ['http://foo'] }
+      settings = double('Xway::Settings')
+      settings.stub('[]').with(:servers) { ['http://foo'] }
+      Xway.stub('settings').and_return(settings)
     end
 
     its('list')     { should == [['$', 'http://foo',    'GET /applications']] }

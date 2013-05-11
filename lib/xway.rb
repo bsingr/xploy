@@ -5,5 +5,7 @@ require 'xway/api'
 require 'xway/cli'
 
 module Xway
-  # Your code goes here...
+  def self.settings
+    @settings ||= Settings.new.load!
+  end
 end
