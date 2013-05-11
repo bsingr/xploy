@@ -16,22 +16,22 @@ describe Xway::Settings do
       end
     end
     before do
-      subject.stub('global_config') { 'global-xway-conf' }
-      subject.stub('local_config') { 'local-xway-conf' }
-      File.stub('exists?').with('global-xway-conf') { false }
-      File.stub('exists?').with('local-xway-conf') { false }
+      subject.stub('global_config').and_return('global-xway-conf')
+      subject.stub('local_config').and_return('local-xway-conf')
+      File.stub('exists?').with('global-xway-conf').and_return(false)
+      File.stub('exists?').with('local-xway-conf').and_return(false)
       Configliere::Param.stub('new').and_return(param)
     end
 
     describe 'loads!' do
       it 'reads global config when it exists' do
-        File.stub('exists?').with('global-xway-conf') { true }
+        File.stub('exists?').with('global-xway-conf').and_return(true)
         param.should_receive('read').with('global-xway-conf')
         subject.load!
       end
 
       it 'reads local config when it exists' do
-        File.stub('exists?').with('local-xway-conf') { true }
+        File.stub('exists?').with('local-xway-conf').and_return(true)
         param.should_receive('read').with('local-xway-conf')
         subject.load!
       end
@@ -60,7 +60,7 @@ describe Xway::Settings do
 
   context 'custom XWAY_CONFIG' do
     let('xway_config') { File.join(Dir.pwd, 'spec/assets/custom.xway') }
-    before { ENV.stub('[]') { xway_config } }
+    before { ENV.stub('[]').and_return(xway_config) }
 
     its('global_config') { should eq(xway_config) }
     its('local_config') { should eq(File.join(Dir.pwd, '.xway')) }

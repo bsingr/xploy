@@ -13,7 +13,7 @@ describe Xway::Api do
     before { Xway::Api::Http.stub('new').and_return(http) }
     before do
       settings = double('Xway::Settings')
-      settings.stub('[]').with(:servers) { ['http://foo'] }
+      settings.stub('[]').with(:servers).and_return(['http://foo'])
       Xway.stub('settings').and_return(settings)
     end
 
