@@ -27,7 +27,7 @@ describe Xway::Settings do
 
     its('to_hash') { should eq({}) }
     its('rest') { should eq([]) }
-    it { subject[:servers].should be_nil}
+    it { subject[:servers].should eq(nil)}
 
     describe 'loads!' do
       it 'reads global config when it exists' do
