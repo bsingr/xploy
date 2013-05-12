@@ -6,7 +6,7 @@
 [![Travis-CI Build Status](https://secure.travis-ci.org/dpree/xway.png)](https://travis-ci.org/dpree/xway)
 [![Coverage Status](https://coveralls.io/repos/dpree/xway/badge.png)](https://coveralls.io/r/dpree/xway)
 [![Dependency Status](https://gemnasium.com/dpree/xway.png)](https://gemnasium.com/dpree/xway)
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/dpree/xway)
+[![Code Climate](https://codeclimate.com/github/dpree/xway.png)](https://codeclimate.com/github/dpree/xway)
 
 ## Installation
 
