@@ -34,6 +34,12 @@ Or install it yourself as:
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+### Development
+
+To run the binary from the repository use the following command with ruby libray path:
+
+    RUBYLIB=lib bin/xway
+
 ### Coding guide
 
 * Using global methods like `Xway.parameter`
