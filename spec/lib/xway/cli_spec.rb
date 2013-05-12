@@ -24,8 +24,4 @@ describe Xway::Cli do
     parameter.stub('rest').and_return(['list'])
     subject.start
   end
-
-  it 'executes commands with custom app name' do
-    pending 'not impl'
-  end
 end
