@@ -14,8 +14,8 @@ describe Xway::Api do
     end
     let!('endpoints') do
       double('Endpoints').tap do |mock|
-        mock.stub('request_foo') do |body|
-          ['get', '/foo', body: body]
+        mock.stub('request_foo') do |options|
+          ['get', '/foo', options]
         end
         Xway::Api::Endpoints.stub('new').and_return(mock)
       end
@@ -28,12 +28,12 @@ describe Xway::Api do
     end
 
     describe 'builds request for each server' do
-      subject { api.request_foo 'my body' }
+      subject { api.request_foo 'foo' => 'bar' }
 
       its('first.server')  { should eq('http://foo') }
-      its('first.request') { should eq(['get', '/foo', body: 'my body']) }
+      its('first.request') { should eq(['get', '/foo', {'foo' => 'bar'}]) }
       its('last.server')   { should eq('http://bar') }
-      its('last.request')  { should eq(['get', '/foo', body: 'my body']) }
+      its('last.request')  { should eq(['get', '/foo', {'foo' => 'bar'}]) }
     end
   end
 end

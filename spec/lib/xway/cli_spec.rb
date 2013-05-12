@@ -26,9 +26,6 @@ describe Xway::Cli do
   end
 
   it 'executes commands with custom app name' do
-    api.should_receive('find').with('foo').and_return('find result')
-    out.should_receive('puts').with('find result')
-    settings.stub('rest').and_return(['find', 'foo'])
-    subject.start
+    pending 'not impl'
   end
 end

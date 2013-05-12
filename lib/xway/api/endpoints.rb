@@ -9,36 +9,36 @@ module Xway
         Request.new 'post', '/applications', options
       end
 
-      def find name=':name'
-        Request.new 'get', "/applications/#{name}"
+      def find options={app: ':name'}
+        Request.new 'get', "/applications/#{options[:app]}"
       end
 
-      def update name=':name'
-        Request.new 'put', "/applications/#{name}"
+      def update options={app: ':name'}
+        Request.new 'put', "/applications/#{options[:app]}"
       end
 
-      def delete name=':name'
-        Request.new 'delete', "/applications/#{name}"
+      def delete options={app: ':name'}
+        Request.new 'delete', "/applications/#{options[:app]}"
       end
 
-      def log name=':name'
-        Request.new 'get', "/applications/#{name}/log"
+      def log options={app: ':name'}
+        Request.new 'get', "/applications/#{options[:app]}/log"
       end
 
-      def start name=':name'
-        Request.new 'post', "/applications/#{name}/start"
+      def start options={app: ':name'}
+        Request.new 'post', "/applications/#{options[:app]}/start"
       end
 
-      def stop name=':name'
-        Request.new 'post', "/applications/#{name}/stop"
+      def stop options={app: ':name'}
+        Request.new 'post', "/applications/#{options[:app]}/stop"
       end
 
-      def restart name=':name'
-        Request.new 'post', "/applications/#{name}/restart"
+      def restart options={app: ':name'}
+        Request.new 'post', "/applications/#{options[:app]}/restart"
       end
 
-      def redeploy name=':name'
-        Request.new 'post', "/applications/#{name}/redeploy"
+      def redeploy options={app: ':name'}
+        Request.new 'post', "/applications/#{options[:app]}/redeploy"
       end
     end
   end
