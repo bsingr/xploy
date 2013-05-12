@@ -1,17 +1,30 @@
 require 'spec_helper'
 require 'xway/api/endpoints'
+require 'xway/api/request'
 
 describe Xway::Api::Endpoints do
-  its('list')     { should ==     'GET /applications' }
-  its('create')   { should ==    'POST /applications' }
-  its('find')     { should ==     'GET /applications/:name' }
-  its('update')   { should ==     'PUT /applications/:name' }
-  its('delete')   { should ==  'DELETE /applications/:name' }
-  its('log')      { should ==     'GET /applications/:name/log'}
-  its('start')    { should ==    'POST /applications/:name/start'}
-  its('stop')     { should ==    'POST /applications/:name/stop'}
-  its('restart')  { should ==    'POST /applications/:name/restart'}
-  its('redeploy') { should ==    'POST /applications/:name/redeploy'}
+  subject('endpoints') { described_class.new }
+
+  its('list.method')        { should eq 'get' }
+  its('list.path')          { should eq '/applications' }
+  its('create.method')      { should eq 'post' }
+  its('create.path')        { should eq '/applications' }
+  its('find.method')        { should eq 'get' }
+  its('find.path')          { should eq '/applications/:name' }
+  its('update.method')      { should eq 'put' }
+  its('update.path')        { should eq '/applications/:name' }
+  its('delete.method')      { should eq 'delete' }
+  its('delete.path')        { should eq '/applications/:name' }
+  its('log.method')         { should eq 'get' }
+  its('log.path')           { should eq '/applications/:name/log'}
+  its('start.method')       { should eq 'post' }
+  its('start.path')         { should eq '/applications/:name/start'}
+  its('stop.method')        { should eq 'post' }
+  its('stop.path')          { should eq '/applications/:name/stop'}
+  its('restart.method')     { should eq 'post' }
+  its('restart.path')       { should eq '/applications/:name/restart'}
+  its('redeploy.method')    { should eq 'post' }
+  its('redeploy.path')      { should eq '/applications/:name/redeploy'}
 
   %w[ find    
       update
@@ -21,8 +34,10 @@ describe Xway::Api::Endpoints do
       stop
       restart
       redeploy ].each do |method_name|
-    specify "#{method_name} accepts :name" do
-      subject.send(method_name, 'foo123').should include('/applications/foo123')
+    describe "#{method_name}" do
+      subject { endpoints.send(method_name, 'foo') }
+      
+      its('path') { should include('/applications/foo') }
     end
   end
 end

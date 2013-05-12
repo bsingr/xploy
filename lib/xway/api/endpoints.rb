@@ -2,43 +2,43 @@ module Xway
   class Api
     class Endpoints
       def list
-        "GET /applications"
+        Request.new 'get', '/applications'
       end
 
       def create
-        "POST /applications"
+        Request.new 'post', '/applications'
       end
 
       def find name=":name"
-        "GET /applications/#{name}"
+        Request.new 'get', "/applications/#{name}", app_name: name
       end
 
       def update name=":name"
-        "PUT /applications/#{name}"
+        Request.new 'put', "/applications/#{name}", app_name: name
       end
 
       def delete name=":name"
-        "DELETE /applications/#{name}"
+        Request.new 'delete', "/applications/#{name}", app_name: name
       end
 
       def log name=":name"
-        "GET /applications/#{name}/log"
+        Request.new 'get', "/applications/#{name}/log", app_name: name
       end
 
       def start name=":name"
-        "POST /applications/#{name}/start"
+        Request.new 'post', "/applications/#{name}/start", app_name: name
       end
 
       def stop name=":name"
-        "POST /applications/#{name}/stop"
+        Request.new 'post', "/applications/#{name}/stop", app_name: name
       end
 
       def restart name=":name"
-        "POST /applications/#{name}/restart"
+        Request.new 'post', "/applications/#{name}/restart", app_name: name
       end
 
       def redeploy name=":name"
-        "POST /applications/#{name}/redeploy"
+        Request.new 'post', "/applications/#{name}/redeploy", app_name: name
       end
     end
   end

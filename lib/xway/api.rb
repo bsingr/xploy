@@ -1,12 +1,13 @@
+require 'xway/api/request'
 require 'xway/api/endpoints'
 require 'xway/api/http'
 
 module Xway
   class Api
     def method_missing method_name, *args, &block
-      endpoint = Endpoints.new.send(method_name, *args)
+      request = Endpoints.new.send(method_name, *args)
       Xway.settings[:servers].map do |server|
-        Http.new.request server, endpoint
+        Http.new.request server, request
       end
     end
   end
