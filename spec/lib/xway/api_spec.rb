@@ -7,7 +7,9 @@ describe Xway::Api do
     let!('http') do
       double('Http').tap do |mock|
         mock.stub('request') do |server, request, debug|
-          Struct.new(:server, :http_options).new(server, request)
+          Struct\
+            .new(:server, :http_options, :debug)\
+            .new(server, request.http_options, debug)
         end
         Xway::Api::Http.stub('new').and_return(mock)
       end
@@ -36,12 +38,12 @@ describe Xway::Api do
 
         its('first.server')       { should eq('http://foo') }
         its('first.http_options') { should eq(:headers => {
-                                                "X-App" => "appway"},
-                                              :debug => false) }
+                                                "X-App" => "appway"}) }
+        its('first.debug')        { should be_false }
         its('last.server')        { should eq('http://bar') }
         its('last.http_options')  { should eq(:headers => {
-                                                "X-App" => "appway"},
-                                              :debug => false) }
+                                                "X-App" => "appway"}) }
+        its('last.debug')         { should be_false }
       end
     end
 
@@ -51,7 +53,7 @@ describe Xway::Api do
         File.stub('exists?').with(manifest).and_return(true)
         File.stub('read').with(manifest).and_return('appway-example.json.data')
         Xway.parameter.stub('[]').with(:app).and_return(name: 'appway-example',
-                                                   manifest: manifest)
+                                                        manifest: manifest)
       end
 
       describe 'builds request for each server' do
@@ -61,14 +63,14 @@ describe Xway::Api do
         its('first.http_options') { should eq(:headers => {
                                                 "X-App" => "appway",
                                                 "Content-Type" => "application/json"},
-                                              :body => "appway-example.json.data",
-                                              :debug => false) }
-        its('last.server')   { should eq('http://bar') }
+                                              :body => "appway-example.json.data") }
+        its('first.debug')        { should be_false }
+        its('last.server')        { should eq('http://bar') }
         its('last.http_options')  { should eq(:headers => {
                                                 "X-App" => "appway",
                                                 "Content-Type" => "application/json"},
-                                              :body => "appway-example.json.data",
-                                              :debug => false) }
+                                              :body => "appway-example.json.data") }
+        its('last.debug')         { should be_false }
       end
     end
   end

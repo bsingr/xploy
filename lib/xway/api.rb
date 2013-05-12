@@ -7,9 +7,8 @@ module Xway
     def request method_name, *args, &block
       parameter = Xway.parameter
       request = Endpoints.new.send(method_name, parameter[:app] || {})
-      http_options = request.http_options.merge(:debug => parameter[:debug])
       parameter[:servers].map do |server|
-        Http.new.request server, http_options
+        Http.new.request server, request, parameter[:debug]
       end
     end
   end
