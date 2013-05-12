@@ -5,39 +5,83 @@ require 'xway/api/request'
 describe Xway::Api::Endpoints do
   subject('endpoints') { described_class.new }
 
-  its('list.method')        { should eq 'get' }
-  its('list.path')          { should eq '/applications' }
-  its('create.method')      { should eq 'post' }
-  its('create.path')        { should eq '/applications' }
-  its('find.method')        { should eq 'get' }
-  its('find.path')          { should eq '/applications/:name' }
-  its('update.method')      { should eq 'put' }
-  its('update.path')        { should eq '/applications/:name' }
-  its('delete.method')      { should eq 'delete' }
-  its('delete.path')        { should eq '/applications/:name' }
-  its('log.method')         { should eq 'get' }
-  its('log.path')           { should eq '/applications/:name/log'}
-  its('start.method')       { should eq 'post' }
-  its('start.path')         { should eq '/applications/:name/start'}
-  its('stop.method')        { should eq 'post' }
-  its('stop.path')          { should eq '/applications/:name/stop'}
-  its('restart.method')     { should eq 'post' }
-  its('restart.path')       { should eq '/applications/:name/restart'}
-  its('redeploy.method')    { should eq 'post' }
-  its('redeploy.path')      { should eq '/applications/:name/redeploy'}
+  describe 'list' do
+    subject        { endpoints.list }
+    its('method')  { should eq 'get' }
+    its('path')    { should eq '/applications' }
+    its('headers') { should eq('X-App' => 'appway') }
+    its('body')    { should eq(nil) }
+  end
 
-  %w[ find    
-      update
-      delete
-      log
-      start
-      stop
-      restart
-      redeploy ].each do |method_name|
-    describe "#{method_name}" do
-      subject { endpoints.send(method_name, 'foo') }
-      
-      its('path') { should include('/applications/foo') }
-    end
+  describe 'create' do
+    subject        { endpoints.create body: 'bar' }
+    its('method')  { should eq 'post' }
+    its('path')    { should eq '/applications' }
+    its('headers') { should eq('X-App' => 'appway') }
+    its('body')    { should eq('bar') }
+  end
+
+  describe 'find' do
+    subject        { endpoints.find 'foo' }
+    its('method')  { should eq 'get' }
+    its('path')    { should eq '/applications/foo' }
+    its('headers') { should eq('X-App' => 'appway') }
+    its('body')    { should eq(nil) }
+  end
+
+  describe 'update' do
+    subject        { endpoints.update 'foo' }
+    its('method')  { should eq 'put' }
+    its('path')    { should eq '/applications/foo' }
+    its('headers') { should eq('X-App' => 'appway') }
+    its('body')    { should eq(nil) }
+  end
+
+  describe 'delete' do
+    subject        { endpoints.delete 'foo' }
+    its('method')  { should eq 'delete' }
+    its('path')    { should eq '/applications/foo' }
+    its('headers') { should eq('X-App' => 'appway') }
+    its('body')    { should eq(nil) }
+  end
+
+  describe 'log' do
+    subject        { endpoints.log 'foo' }
+    its('method')  { should eq 'get' }
+    its('path')    { should eq '/applications/foo/log' }
+    its('headers') { should eq('X-App' => 'appway') }
+    its('body')    { should eq(nil) }
+  end
+
+  describe 'start' do
+    subject        { endpoints.start 'foo' }
+    its('method')  { should eq 'post' }
+    its('path')    { should eq '/applications/foo/start' }
+    its('headers') { should eq('X-App' => 'appway') }
+    its('body')    { should eq(nil) }
+  end
+
+  describe 'stop' do
+    subject        { endpoints.stop 'foo' }
+    its('method')  { should eq 'post' }
+    its('path')    { should eq '/applications/foo/stop' }
+    its('headers') { should eq('X-App' => 'appway') }
+    its('body')    { should eq(nil) }
+  end
+
+  describe 'restart' do
+    subject        { endpoints.restart 'foo' }
+    its('method')  { should eq 'post' }
+    its('path')    { should eq '/applications/foo/restart' }
+    its('headers') { should eq('X-App' => 'appway') }
+    its('body')    { should eq(nil) }
+  end
+
+  describe 'redeploy' do
+    subject        { endpoints.redeploy 'foo' }
+    its('method')  { should eq 'post' }
+    its('path')    { should eq '/applications/foo/redeploy' }
+    its('headers') { should eq('X-App' => 'appway') }
+    its('body')    { should eq(nil) }
   end
 end
