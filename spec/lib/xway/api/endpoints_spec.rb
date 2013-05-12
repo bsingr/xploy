@@ -14,7 +14,7 @@ describe Xway::Api::Endpoints do
   end
 
   describe 'create' do
-    let('manifest') { File.join(ASSETS_PATH, 'appway-example.json') }
+    let('manifest')    { File.join(ASSETS_PATH, 'appway-example.json') }
     subject            { endpoints.create manifest: manifest }
     its('method_name') { should eq 'post' }
     its('path')        { should eq '/applications' }
