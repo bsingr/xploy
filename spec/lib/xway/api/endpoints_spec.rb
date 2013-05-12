@@ -14,11 +14,13 @@ describe Xway::Api::Endpoints do
   end
 
   describe 'create' do
-    subject        { endpoints.create body: 'bar' }
+    let('manifest') { File.join(ASSETS_PATH, 'appway-example.json') }
+    subject        { endpoints.create manifest: manifest }
     its('method')  { should eq 'post' }
     its('path')    { should eq '/applications' }
-    its('headers') { should eq('X-App' => 'appway') }
-    its('body')    { should eq('bar') }
+    its('headers') { should eq('X-App' => 'appway',
+                               'Content-Type' => 'application/json') }
+    its('body')    { should be_kind_of(Xway::Api::Request::Body) }
   end
 
   describe 'find' do

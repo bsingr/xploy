@@ -1,11 +1,16 @@
 require 'spec_helper'
 require 'xway/api/http'
-require 'xway/api/request'
 require 'xway/error'
 
 describe Xway::Api::Http do
-  let('request') { Xway::Api::Request.new('get', '/bar') }
-  let('default_headers') { {'X-App' => 'appway'} }
+  let('headers') { {'X-App' => 'appway'} }
+  let('request') do
+    double('Xway::Api::Request').tap do |mock|
+      mock.stub('method').and_return('get')
+      mock.stub('path').and_return('/bar')
+      mock.stub('http_options').and_return(headers: headers)
+    end
+  end
 
   it 'wraps errors' do
     HTTParty.stub('get') { raise StandardError, 'foo' }
@@ -16,16 +21,15 @@ describe Xway::Api::Http do
   describe 'calls HTTParty' do
     it do
       HTTParty.should_receive('get').with('http://foo/bar',
-                                          headers: default_headers)
+                                          headers: headers)
       subject.request 'http://foo', request
     end
 
-    it 'includes body' do
-      request.stub('body').and_return('bar')
+    it 'includes debug flag' do
       HTTParty.should_receive('get').with('http://foo/bar',
-                                          headers: default_headers,
-                                          body: 'bar')
-      subject.request 'http://foo', request
+                                          headers: headers,
+                                          debug_output: STDOUT)
+      subject.request 'http://foo', request, true
     end
   end
 end

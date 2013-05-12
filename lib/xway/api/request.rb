@@ -1,32 +1,35 @@
+require 'xway/api/request/body'
+
 module Xway
   class Api
     class Request
-      attr_reader :method, :path
+      attr_reader :method, :path, :headers, :body
 
       def initialize method, path, options={}
         @method = method
         @path = path
         @options = options
+        @body = build_body
+        @headers = build_headers
       end
 
-      def headers
+      def build_headers
         {'X-App' => 'appway'}.tap do |headers|
-          headers.merge! @options[:headers] if @options[:headers].is_a? Hash
+          headers['Content-Type'] = body.mime_type if body
         end
       end
 
-      def body
-        if @options[:body]
-          @options[:body]
+      def build_body
+        if path = @options[:manifest]
+          @body = Body.new path
         else
-          nil
+          @body = nil
         end
       end
 
       def http_options
         http_options = {headers: headers}.tap do |http_options|
-          http_options[:debug_output] = STDOUT if @options[:debug]
-          http_options[:body] = body if body
+          http_options[:body] = body.read if body
         end
       end
     end

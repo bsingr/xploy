@@ -3,9 +3,12 @@ require 'httparty'
 module Xway
   class Api
     class Http
-      def request server, request
+      def request server, request, debug=false
         uri = File.join(server, request.path)
-        HTTParty.send(request.method, uri, request.http_options)
+        http_options = request.http_options.tap do |http_options|
+          http_options[:debug_output] = STDOUT if debug
+        end
+        HTTParty.send(request.method, uri, http_options)
       rescue => e
         raise Error, ["#{server} appears offline", e]
       end
