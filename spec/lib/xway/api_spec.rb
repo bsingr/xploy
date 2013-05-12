@@ -21,11 +21,12 @@ describe Xway::Api do
       end
     end
     let!('parameter') do
-      parameter = double('Xway::Parameter')
-      parameter.stub('[]').with(:servers).and_return(['http://foo',
+      parameter = double('Xway::Parameter').tap do |p|
+        p.stub('[]').with(:servers).and_return(['http://foo',
                                                       'http://bar'])
-      parameter.stub('[]').with(:debug).and_return(false)
-      parameter.stub('[]').with(:app).and_return(nil)
+        p.stub('[]').with(:debug).and_return(false)
+        p.stub('[]').with(:app).and_return(nil)
+      end
       Xway.stub('parameter').and_return(parameter)
     end
 
