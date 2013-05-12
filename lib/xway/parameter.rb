@@ -4,9 +4,9 @@ module Xway
   class Parameter
     def reload!
       @param = Configliere::Param.new
-      @param.define :servers, :type => Array,
-                              :description => "all appway servers",
-                              :default => ['http://localhost:8000']
+      @param.define :servers,       type: Array,
+                                    description: "all appway servers",
+                                    default: ['http://localhost:8000']
       @param.define 'app.name',     type: String,
                                     description: 'name of your app'
       @param.define 'app.manifest', type: String,
