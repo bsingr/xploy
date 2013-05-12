@@ -20,19 +20,16 @@ describe Xway::Api do
         Xway::Api::Endpoints.stub('new').and_return(mock)
       end
     end
+    let!('parameter') do
+      parameter = double('Xway::Parameter')
+      parameter.stub('[]').with(:servers).and_return(['http://foo',
+                                                      'http://bar'])
+      parameter.stub('[]').with(:debug).and_return(false)
+      parameter.stub('[]').with(:app).and_return(nil)
+      Xway.stub('parameter').and_return(parameter)
+    end
 
     context 'apps' do
-      before do
-        manifest = File.join(ASSETS_PATH, 'appway-example.json')
-        File.stub('read').with(manifest).and_return('appway-example.json.data')
-        parameter = double('Xway::Parameter')
-        parameter.stub('[]').with(:servers).and_return(['http://foo',
-                                                        'http://bar'])
-        parameter.stub('[]').with(:app).and_return(nil)
-        parameter.stub('[]').with(:debug).and_return(false)
-        Xway.stub('parameter').and_return(parameter)
-      end
-
       describe 'builds request for each server' do
         subject { api.request 'foo' }
 
@@ -52,13 +49,8 @@ describe Xway::Api do
         manifest = File.join(ASSETS_PATH, 'appway-example.json')
         File.stub('exists?').with(manifest).and_return(true)
         File.stub('read').with(manifest).and_return('appway-example.json.data')
-        parameter = double('Xway::Parameter')
-        parameter.stub('[]').with(:servers).and_return(['http://foo',
-                                                        'http://bar'])
-        parameter.stub('[]').with(:app).and_return(name: 'appway-example',
+        Xway.parameter.stub('[]').with(:app).and_return(name: 'appway-example',
                                                    manifest: manifest)
-        parameter.stub('[]').with(:debug).and_return(false)
-        Xway.stub('parameter').and_return(parameter)
       end
 
       describe 'builds request for each server' do
