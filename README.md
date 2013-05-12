@@ -3,7 +3,7 @@
 [appway](http://github.com/threez/appway) client written in ruby
 
 [![Gem Version](https://badge.fury.io/rb/xway.png)](https://rubygems.org/gems/xway)
-[![Travis-CI Build Status](https://secure.travis-ci.org/dpree/xway.png)](https://secure.travis-ci.org/dpree/xway)
+[![Travis-CI Build Status](https://secure.travis-ci.org/dpree/xway.png)](https://travis-ci.org/dpree/xway)
 [![Coverage Status](https://coveralls.io/repos/dpree/xway/badge.png)](https://coveralls.io/r/dpree/xway)
 [![Dependency Status](https://gemnasium.com/dpree/xway.png)](https://gemnasium.com/dpree/xway)
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/dpree/xway)
