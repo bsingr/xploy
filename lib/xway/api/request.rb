@@ -10,9 +10,7 @@ module Xway
       end
 
       def headers
-        {'X-App' => 'appway'}.tap do |headers|
-          headers['X-App'] = @options[:app_name] if @options[:app_name]
-        end
+        {'X-App' => 'appway'}
       end
     end
   end
