@@ -12,6 +12,14 @@ module Xway
       def headers
         {'X-App' => 'appway'}
       end
+
+      def body
+        if @options[:body]
+          @options[:body]
+        else
+          nil
+        end
+      end
     end
   end
 end

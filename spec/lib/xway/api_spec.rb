@@ -24,14 +24,16 @@ describe Xway::Api do
       its('first.request.method')  { should eq 'get' }
       its('first.request.path')    { should eq '/applications' }
       its('first.request.headers') { should eq('X-App' => 'appway') }
+      its('first.request.body')    { should eq(nil) }
     end
 
     describe 'create' do
-      subject { api.create }
+      subject { api.create body: 'bar' }
       its('first.server')          { should eq 'http://foo' }
       its('first.request.method')  { should eq 'post' }
       its('first.request.path')    { should eq '/applications' }
       its('first.request.headers') { should eq('X-App' => 'appway') }
+      its('first.request.body')    { should eq('bar') }
     end
 
     describe 'find' do
@@ -40,6 +42,7 @@ describe Xway::Api do
       its('first.request.method')  { should eq 'get' }
       its('first.request.path')    { should eq '/applications/foo' }
       its('first.request.headers') { should eq('X-App' => 'appway') }
+      its('first.request.body')    { should eq(nil) }
     end
 
     describe 'update' do
@@ -48,6 +51,7 @@ describe Xway::Api do
       its('first.request.method')  { should eq 'put' }
       its('first.request.path')    { should eq '/applications/foo' }
       its('first.request.headers') { should eq('X-App' => 'appway') }
+      its('first.request.body')    { should eq(nil) }
     end
 
     describe 'delete' do
@@ -56,6 +60,7 @@ describe Xway::Api do
       its('first.request.method')  { should eq 'delete' }
       its('first.request.path')    { should eq '/applications/foo' }
       its('first.request.headers') { should eq('X-App' => 'appway') }
+      its('first.request.body')    { should eq(nil) }
     end
 
     describe 'log' do
@@ -64,6 +69,7 @@ describe Xway::Api do
       its('first.request.method')  { should eq 'get' }
       its('first.request.path')    { should eq '/applications/foo/log' }
       its('first.request.headers') { should eq('X-App' => 'appway') }
+      its('first.request.body')    { should eq(nil) }
     end
 
     describe 'start' do
@@ -72,6 +78,7 @@ describe Xway::Api do
       its('first.request.method')  { should eq 'post' }
       its('first.request.path')    { should eq '/applications/foo/start' }
       its('first.request.headers') { should eq('X-App' => 'appway') }
+      its('first.request.body')    { should eq(nil) }
     end
 
     describe 'stop' do
@@ -80,6 +87,7 @@ describe Xway::Api do
       its('first.request.method')  { should eq 'post' }
       its('first.request.path')    { should eq '/applications/foo/stop' }
       its('first.request.headers') { should eq('X-App' => 'appway') }
+      its('first.request.body')    { should eq(nil) }
     end
 
     describe 'restart' do
@@ -88,6 +96,7 @@ describe Xway::Api do
       its('first.request.method')  { should eq 'post' }
       its('first.request.path')    { should eq '/applications/foo/restart' }
       its('first.request.headers') { should eq('X-App' => 'appway') }
+      its('first.request.body')    { should eq(nil) }
     end
 
     describe 'redeploy' do
@@ -96,6 +105,7 @@ describe Xway::Api do
       its('first.request.method')  { should eq 'post' }
       its('first.request.path')    { should eq '/applications/foo/redeploy' }
       its('first.request.headers') { should eq('X-App' => 'appway') }
+      its('first.request.body')    { should eq(nil) }
     end
   end
 end

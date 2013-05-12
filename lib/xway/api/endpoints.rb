@@ -5,8 +5,8 @@ module Xway
         Request.new 'get', '/applications'
       end
 
-      def create
-        Request.new 'post', '/applications'
+      def create options={}
+        Request.new 'post', '/applications', options
       end
 
       def find name=':name'
