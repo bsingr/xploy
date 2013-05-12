@@ -9,35 +9,35 @@ module Xway
         Request.new 'post', '/applications'
       end
 
-      def find name=":name"
+      def find name=':name'
         Request.new 'get', "/applications/#{name}"
       end
 
-      def update name=":name"
+      def update name=':name'
         Request.new 'put', "/applications/#{name}"
       end
 
-      def delete name=":name"
+      def delete name=':name'
         Request.new 'delete', "/applications/#{name}"
       end
 
-      def log name=":name"
+      def log name=':name'
         Request.new 'get', "/applications/#{name}/log"
       end
 
-      def start name=":name"
+      def start name=':name'
         Request.new 'post', "/applications/#{name}/start"
       end
 
-      def stop name=":name"
+      def stop name=':name'
         Request.new 'post', "/applications/#{name}/stop"
       end
 
-      def restart name=":name"
+      def restart name=':name'
         Request.new 'post', "/applications/#{name}/restart"
       end
 
-      def redeploy name=":name"
+      def redeploy name=':name'
         Request.new 'post', "/applications/#{name}/redeploy"
       end
     end
