@@ -52,29 +52,36 @@ describe Xway::Parameter do
         subject.reload!
       end
 
-      it 'defines :servers' do
+      it 'defines servers' do
         param.should_receive('define').with(:servers, type: Array,
-                                            description: "all appway servers",
+                                            description: 'all appway servers',
                                             default: ['http://localhost:8000'])
         subject.reload!
       end
 
       it 'defines app.name' do
         param.should_receive('define').with('app.name', type: String,
-                                            description: "name of your app")
+                                            description: 'name of your app')
         subject.reload!
       end
 
       it 'defines app.manifest' do
         param.should_receive('define').with('app.manifest', type: String,
-                                            description: "path to your app.way file")
+                                            description: 'path to your app.way file')
         subject.reload!
       end
 
       it 'defines debug' do
         param.should_receive('define').with(:debug, 
-                                            description: "print debug info to stdout",
+                                            description: 'print debug info to stdout',
                                             default: false)
+        subject.reload!
+      end
+
+      it 'defines version' do
+        param.should_receive('define').with(:version,
+                                            flag: 'v',
+                                            description: 'print version info')
         subject.reload!
       end
     end
@@ -89,6 +96,12 @@ describe Xway::Parameter do
       its('rest') { should eq([1,2,3]) }
       its('to_hash') { should eq(servers: ['http://bar']) }
       it { subject[:servers].should eq('http://bar') }
+    end
+
+    it 'print_help!' do
+      param.should_receive('[]=').with(:help, true)
+      param.should_receive('resolve!')
+      subject.print_help!
     end
   end
 

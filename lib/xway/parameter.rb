@@ -13,9 +13,18 @@ module Xway
                                     description: 'path to your app.way file'
       @param.define :debug,         description: 'print debug info to stdout',
                                     default: false
+      @param.define :version,       flag: 'v',
+                                    description: 'print version info'
       @param.read global_config if File.exists? global_config
       @param.read local_config if File.exists? local_config
       @param.use(:commandline)
+      @param.resolve!
+      self
+    end
+
+    def print_help!
+      reload!
+      @param[:help] = true
       @param.resolve!
       self
     end

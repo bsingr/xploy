@@ -7,17 +7,10 @@ module Xway
 
     def start
       commands = Xway.parameter.rest
-      if commands.empty?
-        execute ['version']
-      else
-        execute commands
-      end
-    end
-
-    def execute commands
-      command = commands.first
-      if command == 'version'
+      if Xway.parameter[:version]
         @out.puts "xway #{VERSION}"
+      elsif commands.empty?
+        Xway.parameter.print_help!
       else
         @out.puts @api.request(*commands)
       end
