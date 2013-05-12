@@ -1,11 +1,11 @@
 require 'xway/version'
 require 'xway/error'
-require 'xway/settings'
+require 'xway/parameter'
 require 'xway/api'
 require 'xway/cli'
 
 module Xway
-  def self.settings
-    @settings ||= Settings.new.reload!
+  def self.parameter
+    @parameter ||= Parameter.new.reload!
   end
 end

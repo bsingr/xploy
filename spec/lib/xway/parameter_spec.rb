@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'xway/settings'
+require 'xway/parameter'
 
-describe Xway::Settings do
+describe Xway::Parameter do
   its('global_config') { should eq(File.join(ENV['HOME'], '.xway')) }
   its('local_config') { should eq(File.join(Dir.pwd, '.xway')) }
 

@@ -21,10 +21,10 @@ describe Xway::Api do
       end
     end
     before do
-      settings = double('Xway::Settings')
-      settings.stub('[]').with(:servers).and_return(['http://foo',
+      parameter = double('Xway::Parameter')
+      parameter.stub('[]').with(:servers).and_return(['http://foo',
                                                      'http://bar'])
-      Xway.stub('settings').and_return(settings)
+      Xway.stub('parameter').and_return(parameter)
     end
 
     describe 'builds request for each server' do

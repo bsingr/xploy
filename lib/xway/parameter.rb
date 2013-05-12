@@ -1,38 +1,38 @@
 require 'configliere'
 
 module Xway
-  class Settings
+  class Parameter
     def reload!
-      @settings = Configliere::Param.new
-      @settings.define :servers, :type => Array,
+      @param = Configliere::Param.new
+      @param.define :servers, :type => Array,
                                  :description => "all appway servers",
                                  :default => ['http://localhost:8000']
-      @settings.read global_config if File.exists? global_config
-      @settings.read local_config if File.exists? local_config
-      @settings.use(:commandline)
-      @settings.resolve!
+      @param.read global_config if File.exists? global_config
+      @param.read local_config if File.exists? local_config
+      @param.use(:commandline)
+      @param.resolve!
       self
     end
 
     def [] key
-      if @settings
-        @settings[key]
+      if @param
+        @param[key]
       else
         nil
       end
     end
 
     def rest
-      if @settings
-        @settings.rest
+      if @param
+        @param.rest
       else
         []
       end
     end
 
     def to_hash
-      if @settings
-        @settings.to_hash
+      if @param
+        @param.to_hash
       else
         {}
       end

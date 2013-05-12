@@ -6,7 +6,7 @@ module Xway
     end
 
     def start
-      commands = Xway.settings.rest
+      commands = Xway.parameter.rest
       if commands.empty?
         execute ['version']
       else

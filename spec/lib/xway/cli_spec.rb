@@ -3,12 +3,12 @@ require 'xway/cli'
 require 'xway/version'
 
 describe Xway::Cli do
-  let('settings') do
-    double('settings').tap { |o| o.stub('rest').and_return([]) }
+  let('parameter') do
+    double('Xway::Parameter').tap { |o| o.stub('rest').and_return([]) }
   end
   let('api') { double('api') }
   let('out') { double('stdout').tap { |o| o.stub('puts') } }
-  before { Xway.stub('settings').and_return(settings) }
+  before { Xway.stub('parameter').and_return(parameter) }
   subject { described_class.new api, out }
 
   its('start') { should eq nil }
@@ -21,7 +21,7 @@ describe Xway::Cli do
   it 'executes commands using api' do
     api.should_receive('list').and_return('list result')
     out.should_receive('puts').with('list result')
-    settings.stub('rest').and_return(['list'])
+    parameter.stub('rest').and_return(['list'])
     subject.start
   end
 
