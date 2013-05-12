@@ -72,7 +72,7 @@ describe Xway::Parameter do
       it 'defines app.manifest' do
         param.should_receive('define').with('app.manifest',
                                             type: String,
-                                            flag: 'f',
+                                            flag: 'm',
                                             description: 'path to your app.way file')
         subject.reload!
       end

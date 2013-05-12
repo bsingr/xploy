@@ -12,7 +12,7 @@ module Xway
                                     flag: 'a',
                                     description: 'name of your app'
       @param.define 'app.manifest', type: String,
-                                    flag: 'f',
+                                    flag: 'm',
                                     description: 'path to your app.way file'
       @param.define :debug,         flag: 'd',
                                     description: 'print debug info to stdout',
