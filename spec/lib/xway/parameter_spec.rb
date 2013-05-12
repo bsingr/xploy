@@ -53,26 +53,33 @@ describe Xway::Parameter do
       end
 
       it 'defines servers' do
-        param.should_receive('define').with(:servers, type: Array,
+        param.should_receive('define').with(:servers,
+                                            type: Array,
+                                            flag: 's',
                                             description: 'all appway servers',
                                             default: ['http://localhost:8000'])
         subject.reload!
       end
 
       it 'defines app.name' do
-        param.should_receive('define').with('app.name', type: String,
+        param.should_receive('define').with('app.name',
+                                            type: String,
+                                            flag: 'a',
                                             description: 'name of your app')
         subject.reload!
       end
 
       it 'defines app.manifest' do
-        param.should_receive('define').with('app.manifest', type: String,
+        param.should_receive('define').with('app.manifest',
+                                            type: String,
+                                            flag: 'f',
                                             description: 'path to your app.way file')
         subject.reload!
       end
 
       it 'defines debug' do
-        param.should_receive('define').with(:debug, 
+        param.should_receive('define').with(:debug,
+                                            flag: 'd',
                                             description: 'print debug info to stdout',
                                             default: false)
         subject.reload!

@@ -5,14 +5,18 @@ module Xway
     def reload!
       @param = Configliere::Param.new
       @param.define :servers,       type: Array,
+                                    flag: 's',
                                     description: "all appway servers",
                                     default: ['http://localhost:8000']
       @param.define 'app.name',     type: String,
+                                    flag: 'a',
                                     description: 'name of your app'
       @param.define 'app.manifest', type: String,
+                                    flag: 'f',
                                     description: 'path to your app.way file'
       @param.define :debug,         description: 'print debug info to stdout',
-                                    default: false
+                                    default: false,
+                                    flag: 'd'
       @param.define :version,       flag: 'v',
                                     description: 'print version info'
       @param.read global_config if File.exists? global_config
