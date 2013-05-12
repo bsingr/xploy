@@ -19,7 +19,7 @@ describe Xway::Cli do
   end
 
   it 'executes commands using api' do
-    api.should_receive('list').and_return('list result')
+    api.should_receive('request').with('list').and_return('list result')
     out.should_receive('puts').with('list result')
     parameter.stub('rest').and_return(['list'])
     subject.start

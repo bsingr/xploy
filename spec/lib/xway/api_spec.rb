@@ -32,7 +32,7 @@ describe Xway::Api do
     end
     let!('endpoints') do
       double('Endpoints').tap do |mock|
-        mock.stub('request_foo') do |options|
+        mock.stub('foo') do |options|
           Xway::Api::Request.new 'get', '/foo', options
         end
         Xway::Api::Endpoints.stub('new').and_return(mock)
@@ -52,7 +52,7 @@ describe Xway::Api do
       end
 
       describe 'builds request for each server' do
-        subject { api.request_foo }
+        subject { api.request 'foo' }
 
         its('first.server')  { should eq('http://foo') }
         its('first.request') { should eq(:headers => {"X-App" => "appway"}) }
@@ -76,7 +76,7 @@ describe Xway::Api do
       end
 
       describe 'builds request for each server' do
-        subject { api.request_foo }
+        subject { api.request 'foo' }
 
         its('first.server')  { should eq('http://foo') }
         its('first.request') { should eq(:headers => {

@@ -4,7 +4,7 @@ require 'xway/api/http'
 
 module Xway
   class Api
-    def method_missing method_name, *args, &block
+    def request method_name, *args, &block
       options = {}.tap do |options|
         options[:debug] = Xway.parameter[:debug]
         if app = Xway.parameter[:app]
