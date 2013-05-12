@@ -34,6 +34,16 @@ Or install it yourself as:
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
+### Coding guide
+
+* Using global methods like `Xway.parameter`
+  * is allowed for classes / modules defined on the same or a higher level to the `Xway` namespace
+  * is allowed for classes / modules defined excactly one level below the `Xway` namespace
+    * e.g. `Xway::Api`
+  * is not allowed for classes / modules defined more than one level below the `Xway` namespace
+    * e.g. `Xway::Api::Request`
+    * these classes should use dependency injection instead
+
 # License
 
 Copyright (c) 2013 Jens Bissinger. See [LICENSE.txt](LICENSE.txt)
