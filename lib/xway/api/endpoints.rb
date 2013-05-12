@@ -1,7 +1,7 @@
 module Xway
   class Api
     class Endpoints
-      def list
+      def list options={}
         Request.new 'get', '/applications'
       end
 

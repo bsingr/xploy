@@ -22,5 +22,7 @@ end
 
 # just add the lib folder to the load path
 # -> actual 'require' calls will be done within each spec (speed + modularity)
-lib = File.expand_path('../lib', __FILE__)
+lib = File.expand_path('../lib', File.dirname(__FILE__))
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
+ASSETS_PATH = File.expand_path('assets', File.dirname(__FILE__))

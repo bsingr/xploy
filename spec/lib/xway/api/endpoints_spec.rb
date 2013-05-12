@@ -6,7 +6,7 @@ describe Xway::Api::Endpoints do
   subject('endpoints') { described_class.new }
 
   describe 'list' do
-    subject        { endpoints.list }
+    subject        { endpoints.list({}) }
     its('method')  { should eq 'get' }
     its('path')    { should eq '/applications' }
     its('headers') { should eq('X-App' => 'appway') }

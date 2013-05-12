@@ -58,6 +58,25 @@ describe Xway::Parameter do
                                             default: ['http://localhost:8000'])
         subject.reload!
       end
+
+      it 'defines app.name' do
+        param.should_receive('define').with('app.name', type: String,
+                                            description: "name of your app")
+        subject.reload!
+      end
+
+      it 'defines app.manifest' do
+        param.should_receive('define').with('app.manifest', type: String,
+                                            description: "path to your app.way file")
+        subject.reload!
+      end
+
+      it 'defines debug' do
+        param.should_receive('define').with(:debug, 
+                                            description: "print debug info to stdout",
+                                            default: false)
+        subject.reload!
+      end
     end
 
     context 'after reload!' do

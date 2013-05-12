@@ -1,0 +1,21 @@
+{
+  "name": "example",
+  "repo": {
+    "url": "git://github.com/threez/appway-example.git",
+    "branch": "master"
+  },
+  "packages": {
+  },
+  "user": "www-data",
+  "group": "www-data",
+  "domain": [
+    "^example.*",
+    "^example.local$"
+  ],
+  "install": [
+    "npm install"
+  ],
+  "scale": {
+    "web": 2
+  }
+}
