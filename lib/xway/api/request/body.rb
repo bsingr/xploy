@@ -13,7 +13,7 @@ module Xway
             if File.exists?(path)
               File.read(path)
             else
-              raise Error, "could not find file #{path}"
+              raise ManifestFileNotFound, "could not find file #{path}"
             end
           end
         end
@@ -31,7 +31,8 @@ module Xway
           if extname == '.json'
             yield extname
           else
-            raise Error, "unsupported extension #{extname} for #{path}"
+            raise ManifestFileTypeUnsupported, \
+              "unsupported extension #{extname} for #{path}"
           end
         end
       end

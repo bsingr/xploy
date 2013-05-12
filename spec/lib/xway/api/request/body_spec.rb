@@ -11,8 +11,8 @@ describe Xway::Api::Request::Body do
     subject { described_class.new path }
     
     its('path') { should eq path }
-    it { expect{subject.mime_type}.to raise_error(Xway::Error) }
-    it { expect{subject.read}.to raise_error(Xway::Error) }
+    it { expect{subject.mime_type}.to raise_error(Xway::ManifestFileTypeUnsupported) }
+    it { expect{subject.read}.to raise_error(Xway::ManifestFileTypeUnsupported) }
   end
 
   context 'known file type but not existent' do
@@ -24,7 +24,7 @@ describe Xway::Api::Request::Body do
     
     its('path') { should eq path }
     its('mime_type') { should eq 'application/json' }
-    it { expect{subject.read}.to raise_error(Xway::Error) }
+    it { expect{subject.read}.to raise_error(Xway::ManifestFileNotFound) }
   end
 
   context 'correct file' do
