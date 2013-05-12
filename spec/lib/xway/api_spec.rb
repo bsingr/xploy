@@ -23,17 +23,18 @@ describe Xway::Api do
     before do
       parameter = double('Xway::Parameter')
       parameter.stub('[]').with(:servers).and_return(['http://foo',
-                                                     'http://bar'])
+                                                      'http://bar'])
+      parameter.stub('[]').with(:app).and_return('bar')
       Xway.stub('parameter').and_return(parameter)
     end
 
     describe 'builds request for each server' do
-      subject { api.request_foo 'foo' => 'bar' }
+      subject { api.request_foo }
 
       its('first.server')  { should eq('http://foo') }
-      its('first.request') { should eq(['get', '/foo', {'foo' => 'bar'}]) }
+      its('first.request') { should eq(['get', '/foo', {app: 'bar'}]) }
       its('last.server')   { should eq('http://bar') }
-      its('last.request')  { should eq(['get', '/foo', {'foo' => 'bar'}]) }
+      its('last.request')  { should eq(['get', '/foo', {app: 'bar'}]) }
     end
   end
 end
