@@ -1,8 +1,30 @@
 require 'spec_helper'
 require 'xway/api'
+require 'xway/error'
 
 describe Xway::Api do
+  let!('parameter') do
+    parameter = double('Xway::Parameter').tap do |p|
+      p.stub('[]').with(:servers).and_return(['http://foo',
+                                              'http://bar'])
+      p.stub('[]').with(:debug).and_return(false)
+      p.stub('[]').with(:app).and_return(nil)
+    end
+    Xway.stub('parameter').and_return(parameter)
+  end
+
   subject('api') { described_class.new }
+
+  context 'mock HTTParty' do
+    before do
+      HTTParty.stub('get').and_return('list of apps')
+    end
+
+    subject { api.request 'list' }
+
+    it { should eq ['list of apps', 'list of apps'] }
+  end
+
   context 'mock http + endpoints' do
     let!('http') do
       double('Http').tap do |mock|
@@ -21,15 +43,6 @@ describe Xway::Api do
         end
         Xway::Api::Endpoints.stub('new').and_return(mock)
       end
-    end
-    let!('parameter') do
-      parameter = double('Xway::Parameter').tap do |p|
-        p.stub('[]').with(:servers).and_return(['http://foo',
-                                                      'http://bar'])
-        p.stub('[]').with(:debug).and_return(false)
-        p.stub('[]').with(:app).and_return(nil)
-      end
-      Xway.stub('parameter').and_return(parameter)
     end
 
     context 'apps' do
