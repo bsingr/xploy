@@ -15,7 +15,7 @@ describe Xway::Api::Http do
   it 'wraps errors' do
     HTTParty.stub('get') { raise StandardError, 'foo' }
     expect { subject.request 'http://foo', request }.to\
-      raise_error(Xway::Error)
+      raise_error(Xway::ConnectionError)
   end
 
   describe 'calls HTTParty' do

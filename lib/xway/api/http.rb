@@ -10,7 +10,7 @@ module Xway
         end
         HTTParty.send(request.method_name, uri, http_options)
       rescue => e
-        raise Error, ["#{server} appears offline", e]
+        raise ConnectionError, ["#{server} appears offline", e]
       end
     end
   end
