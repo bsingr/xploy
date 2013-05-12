@@ -3,10 +3,10 @@ require 'xway/api/request/body'
 module Xway
   class Api
     class Request
-      attr_reader :method, :path, :headers, :body
+      attr_reader :method_name, :path, :headers, :body
 
-      def initialize method, path, options={}
-        @method = method
+      def initialize method_name, path, options={}
+        @method_name = method_name
         @path = path
         @options = options
         @body = build_body

@@ -6,7 +6,7 @@ describe Xway::Api::Http do
   let('headers') { {'X-App' => 'appway'} }
   let('request') do
     double('Xway::Api::Request').tap do |mock|
-      mock.stub('method').and_return('get')
+      mock.stub('method_name').and_return('get')
       mock.stub('path').and_return('/bar')
       mock.stub('http_options').and_return(headers: headers)
     end

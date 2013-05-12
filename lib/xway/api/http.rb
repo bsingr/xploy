@@ -8,7 +8,7 @@ module Xway
         http_options = request.http_options.tap do |http_options|
           http_options[:debug_output] = STDOUT if debug
         end
-        HTTParty.send(request.method, uri, http_options)
+        HTTParty.send(request.method_name, uri, http_options)
       rescue => e
         raise Error, ["#{server} appears offline", e]
       end
