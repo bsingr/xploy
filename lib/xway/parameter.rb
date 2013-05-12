@@ -6,7 +6,7 @@ module Xway
       @param = Configliere::Param.new
       @param.define :servers,       type: Array,
                                     flag: 's',
-                                    description: "all appway servers",
+                                    description: 'all appway servers',
                                     default: ['http://localhost:8000']
       @param.define 'app.name',     type: String,
                                     flag: 'a',
@@ -14,9 +14,9 @@ module Xway
       @param.define 'app.manifest', type: String,
                                     flag: 'f',
                                     description: 'path to your app.way file'
-      @param.define :debug,         description: 'print debug info to stdout',
-                                    default: false,
-                                    flag: 'd'
+      @param.define :debug,         flag: 'd',
+                                    description: 'print debug info to stdout',
+                                    default: false
       @param.define :version,       flag: 'v',
                                     description: 'print version info'
       @param.read global_config if File.exists? global_config
