@@ -14,6 +14,8 @@ module Xway
       else
         @out.puts @api.request(*commands)
       end
+    rescue MissingParameter => e
+      @out.puts e.message
     end
   end
 end

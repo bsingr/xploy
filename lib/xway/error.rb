@@ -5,5 +5,7 @@ module Xway
   class ManifestFileNotFound < Error; end
   class ManifestFileTypeUnsupported < Error; end
 
+  class MissingParameter < Error; end
+
   class ConnectionError < Error; end
 end
