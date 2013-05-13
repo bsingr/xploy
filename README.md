@@ -33,20 +33,12 @@ You can store default parameters like `app.name` and `app.manifest` in a file na
 For an example just have a look at the `appway-example` folder.
 
     $ cd appway-example
-    
+
 Here you can just redeploy the preconfigured app like so:
 
     $ xway redeploy
 
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
-
-### Development
+## Development
 
 To run the binary from the repository use the following command with ruby libray path:
 
@@ -61,6 +53,14 @@ To run the binary from the repository use the following command with ruby libray
   * is not allowed for classes / modules defined more than one level below the `Xway` namespace
     * e.g. `Xway::Api::Request`
     * these classes should use dependency injection instead
+
+### Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
 
 # License
 
