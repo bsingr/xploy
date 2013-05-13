@@ -1,3 +1,3 @@
 module Xploy
-  VERSION = "0.0.3.beta"
+  VERSION = "0.1.0.beta"
 end
