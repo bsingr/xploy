@@ -62,7 +62,7 @@ module Xway
       def require_options options, *keys
         missing_keys = []
         keys.each do |key|
-          if !options || options[key] == nil || options[key] == ''
+          if !options.is_a?(Hash) || options[key] == nil || options[key] == ''
             missing_keys << key
           end
         end
