@@ -26,7 +26,7 @@ Or install it yourself as:
 
     $ xploy
 
-### Recommended config settings
+### Recommended Setup
 
 You can store default parameters like `app.name` and `app.manifest` in a file named `.xploy` located in your current working dir.
 
@@ -37,6 +37,28 @@ For an example just have a look at the `appway-example` folder.
 Here you can just redeploy the preconfigured app like so:
 
     $ xploy redeploy
+
+### Configuration
+
+#### --app.name
+
+The application name
+
+#### --app.manifest
+
+The path to the application manifest
+
+#### --servers
+
+A list of appway servers that the client must communicate with
+
+#### --debug
+
+When set to `true` it will debug all http traffic
+
+#### --version
+
+Print version
 
 ## Development
 
