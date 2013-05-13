@@ -33,7 +33,10 @@ You can store default parameters like `app.name` and `app.manifest` in a file na
 For an example just have a look at the `appway-example` folder.
 
     $ cd appway-example
-    $ RUBYLIB=../lib ../bin/xway redeploy
+    
+Here you can just redeploy the preconfigured app like so:
+
+    $ xway redeploy
 
 ## Contributing
 
