@@ -1,17 +1,17 @@
 require 'spec_helper'
-require 'xway/cli'
-require 'xway/version'
+require 'xploy/cli'
+require 'xploy/version'
 
-describe Xway::Cli do
+describe Xploy::Cli do
   let('parameter') do
-    double('Xway::Parameter').tap do |mock|
+    double('Xploy::Parameter').tap do |mock|
       mock.stub('rest').and_return([])
       mock.stub('[]').with(:version).and_return(nil)
     end
   end
   let('api') { double('api') }
   let('out') { double('stdout').tap { |o| o.stub('puts') } }
-  before { Xway.stub('parameter').and_return(parameter) }
+  before { Xploy.stub('parameter').and_return(parameter) }
   subject { described_class.new api, out }
   
   it 'prints usage per default' do
@@ -21,7 +21,7 @@ describe Xway::Cli do
 
   it 'prints version on :version parameter' do
     parameter.stub('[]').with(:version).and_return(true)
-    out.should_receive('puts').with("xway #{Xway::VERSION}")
+    out.should_receive('puts').with("xploy #{Xploy::VERSION}")
     subject.start
   end
 

@@ -1,15 +1,15 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'xway/version'
+require 'xploy/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "xway"
-  gem.version       = Xway::VERSION
+  gem.name          = "xploy"
+  gem.version       = Xploy::VERSION
   gem.authors       = ["Jens Bissinger"]
   gem.email         = ["mail@jens-bissinger.de"]
   gem.description   = %q{Appway client.}
-  gem.summary       = %q{Provides the xway command. See github.com/threez/appway.}
+  gem.summary       = %q{Provides the xploy command. See github.com/threez/appway.}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)

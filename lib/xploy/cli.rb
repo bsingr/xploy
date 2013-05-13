@@ -1,4 +1,4 @@
-module Xway
+module Xploy
   class Cli
     def initialize api=Api.new, out=STDOUT
       @api = api
@@ -6,11 +6,11 @@ module Xway
     end
 
     def start
-      commands = Xway.parameter.rest
-      if Xway.parameter[:version]
-        @out.puts "xway #{VERSION}"
+      commands = Xploy.parameter.rest
+      if Xploy.parameter[:version]
+        @out.puts "xploy #{VERSION}"
       elsif commands.empty?
-        Xway.parameter.print_help!
+        Xploy.parameter.print_help!
       else
         @out.puts @api.request(*commands)
       end

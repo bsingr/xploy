@@ -1,6 +1,6 @@
 require 'httparty'
 
-module Xway
+module Xploy
   class Api
     class Http
       def request server, request, debug=false

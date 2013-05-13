@@ -1,4 +1,4 @@
-module Xway
+module Xploy
   class Api
     class Endpoints
       def list options={}

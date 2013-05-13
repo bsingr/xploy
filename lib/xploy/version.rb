@@ -1,3 +1,3 @@
-module Xway
+module Xploy
   VERSION = "0.0.3.beta"
 end

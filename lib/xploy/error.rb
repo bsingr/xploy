@@ -1,4 +1,4 @@
-module Xway
+module Xploy
   # global error class
   class Error < StandardError; end
 

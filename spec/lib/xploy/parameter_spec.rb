@@ -1,9 +1,9 @@
 require 'spec_helper'
-require 'xway/parameter'
+require 'xploy/parameter'
 
-describe Xway::Parameter do
-  its('global_config') { should eq(File.join(ENV['HOME'], '.xway')) }
-  its('local_config') { should eq(File.join(Dir.pwd, '.xway')) }
+describe Xploy::Parameter do
+  its('global_config') { should eq(File.join(ENV['HOME'], '.xploy')) }
+  its('local_config') { should eq(File.join(Dir.pwd, '.xploy')) }
 
   context 'mocked Configliere::Param' do
     let('param') do
@@ -18,10 +18,10 @@ describe Xway::Parameter do
       end
     end
     before do
-      subject.stub('global_config').and_return('global-xway-conf')
-      subject.stub('local_config').and_return('local-xway-conf')
-      File.stub('exists?').with('global-xway-conf').and_return(false)
-      File.stub('exists?').with('local-xway-conf').and_return(false)
+      subject.stub('global_config').and_return('global-xploy-conf')
+      subject.stub('local_config').and_return('local-xploy-conf')
+      File.stub('exists?').with('global-xploy-conf').and_return(false)
+      File.stub('exists?').with('local-xploy-conf').and_return(false)
       Configliere::Param.stub('new').and_return(param)
     end
 
@@ -31,14 +31,14 @@ describe Xway::Parameter do
 
     describe 'loads!' do
       it 'reads global config when it exists' do
-        File.stub('exists?').with('global-xway-conf').and_return(true)
-        param.should_receive('read').with('global-xway-conf')
+        File.stub('exists?').with('global-xploy-conf').and_return(true)
+        param.should_receive('read').with('global-xploy-conf')
         subject.reload!
       end
 
       it 'reads local config when it exists' do
-        File.stub('exists?').with('local-xway-conf').and_return(true)
-        param.should_receive('read').with('local-xway-conf')
+        File.stub('exists?').with('local-xploy-conf').and_return(true)
+        param.should_receive('read').with('local-xploy-conf')
         subject.reload!
       end
 
@@ -110,11 +110,11 @@ describe Xway::Parameter do
     end
   end
 
-  context 'custom XWAY_CONFIG' do
-    let('xway_config') { File.join(Dir.pwd, 'spec/assets/custom.xway') }
-    before { ENV.stub('[]').and_return(xway_config) }
+  context 'custom XPLOY_CONFIG' do
+    let('xploy_config') { File.join(Dir.pwd, 'spec/assets/custom.xploy') }
+    before { ENV.stub('[]').and_return(xploy_config) }
 
-    its('global_config') { should eq(xway_config) }
-    its('local_config') { should eq(File.join(Dir.pwd, '.xway')) }
+    its('global_config') { should eq(xploy_config) }
+    its('local_config') { should eq(File.join(Dir.pwd, '.xploy')) }
   end
 end

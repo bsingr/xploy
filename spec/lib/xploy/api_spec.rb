@@ -1,16 +1,16 @@
 require 'spec_helper'
-require 'xway/api'
-require 'xway/error'
+require 'xploy/api'
+require 'xploy/error'
 
-describe Xway::Api do
+describe Xploy::Api do
   let!('parameter') do
-    parameter = double('Xway::Parameter').tap do |p|
+    parameter = double('Xploy::Parameter').tap do |p|
       p.stub('[]').with(:servers).and_return(['http://foo',
                                               'http://bar'])
       p.stub('[]').with(:debug).and_return(false)
       p.stub('[]').with(:app).and_return(nil)
     end
-    Xway.stub('parameter').and_return(parameter)
+    Xploy.stub('parameter').and_return(parameter)
   end
 
   subject('api') { described_class.new }
@@ -33,15 +33,15 @@ describe Xway::Api do
             .new(:server, :http_options, :debug)\
             .new(server, request.http_options, debug)
         end
-        Xway::Api::Http.stub('new').and_return(mock)
+        Xploy::Api::Http.stub('new').and_return(mock)
       end
     end
     let!('endpoints') do
       double('Endpoints').tap do |mock|
         mock.stub('foo') do |options|
-          Xway::Api::Request.new 'get', '/foo', options
+          Xploy::Api::Request.new 'get', '/foo', options
         end
-        Xway::Api::Endpoints.stub('new').and_return(mock)
+        Xploy::Api::Endpoints.stub('new').and_return(mock)
       end
     end
 
@@ -65,7 +65,7 @@ describe Xway::Api do
         manifest = File.join(ASSETS_PATH, 'appway-example.json')
         File.stub('exists?').with(manifest).and_return(true)
         File.stub('read').with(manifest).and_return('appway-example.json.data')
-        Xway.parameter.stub('[]').with(:app).and_return(name: 'appway-example',
+        Xploy.parameter.stub('[]').with(:app).and_return(name: 'appway-example',
                                                         manifest: manifest)
       end
 

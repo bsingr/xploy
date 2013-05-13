@@ -1,6 +1,6 @@
 require 'spec_helper'
-require 'xway/error'
+require 'xploy/error'
 
-describe Xway::Error do
+describe Xploy::Error do
   it { should be_kind_of(StandardError) }
 end

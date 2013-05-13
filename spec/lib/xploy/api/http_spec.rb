@@ -1,11 +1,11 @@
 require 'spec_helper'
-require 'xway/api/http'
-require 'xway/error'
+require 'xploy/api/http'
+require 'xploy/error'
 
-describe Xway::Api::Http do
+describe Xploy::Api::Http do
   let('headers') { {'X-App' => 'appway'} }
   let('request') do
-    double('Xway::Api::Request').tap do |mock|
+    double('Xploy::Api::Request').tap do |mock|
       mock.stub('method_name').and_return('get')
       mock.stub('path').and_return('/bar')
       mock.stub('http_options').and_return(headers: headers)
@@ -15,7 +15,7 @@ describe Xway::Api::Http do
   it 'wraps errors' do
     HTTParty.stub('get') { raise StandardError, 'foo' }
     expect { subject.request 'http://foo', request }.to\
-      raise_error(Xway::ConnectionError)
+      raise_error(Xploy::ConnectionError)
   end
 
   describe 'calls HTTParty' do

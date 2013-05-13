@@ -1,6 +1,6 @@
 require 'configliere'
 
-module Xway
+module Xploy
   class Parameter
     def reload!
       @param = Configliere::Param.new
@@ -56,11 +56,11 @@ module Xway
     end
 
     def global_config
-      ENV['XWAY_CONFIG'] || File.join(ENV['HOME'], '.xway')
+      ENV['XPLOY_CONFIG'] || File.join(ENV['HOME'], '.xploy')
     end
 
     def local_config
-      File.join(Dir.pwd, '.xway')
+      File.join(Dir.pwd, '.xploy')
     end
   end
 end

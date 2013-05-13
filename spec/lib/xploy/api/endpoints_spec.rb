@@ -1,40 +1,40 @@
 require 'spec_helper'
-require 'xway/error'
-require 'xway/api/endpoints'
-require 'xway/api/request'
+require 'xploy/error'
+require 'xploy/api/endpoints'
+require 'xploy/api/request'
 
-describe Xway::Api::Endpoints do
+describe Xploy::Api::Endpoints do
   subject('endpoints') { described_class.new }
 
   specify 'list doesnt require_options' do
-    expect{ subject.list }.not_to raise_error(Xway::MissingParameter)
+    expect{ subject.list }.not_to raise_error(Xploy::MissingParameter)
   end
   specify 'create doesnt require_options' do
-    expect{ subject.create }.not_to raise_error(Xway::MissingParameter)
+    expect{ subject.create }.not_to raise_error(Xploy::MissingParameter)
   end
   specify 'find does require_options' do
-    expect{ subject.find }.to raise_error(Xway::MissingParameter)
+    expect{ subject.find }.to raise_error(Xploy::MissingParameter)
   end
   specify 'update does require_options' do
-    expect{ subject.update }.to raise_error(Xway::MissingParameter)
+    expect{ subject.update }.to raise_error(Xploy::MissingParameter)
   end
   specify 'delete does require_options' do
-    expect{ subject.delete }.to raise_error(Xway::MissingParameter)
+    expect{ subject.delete }.to raise_error(Xploy::MissingParameter)
   end
   specify 'log does require_options' do
-    expect{ subject.log }.to raise_error(Xway::MissingParameter)
+    expect{ subject.log }.to raise_error(Xploy::MissingParameter)
   end
   specify 'start does require_options' do
-    expect{ subject.start }.to raise_error(Xway::MissingParameter)
+    expect{ subject.start }.to raise_error(Xploy::MissingParameter)
   end
   specify 'stop does require_options' do
-    expect{ subject.stop }.to raise_error(Xway::MissingParameter)
+    expect{ subject.stop }.to raise_error(Xploy::MissingParameter)
   end
   specify 'restart does require_options' do
-    expect{ subject.restart }.to raise_error(Xway::MissingParameter)
+    expect{ subject.restart }.to raise_error(Xploy::MissingParameter)
   end
   specify 'redeploy does require_options' do
-    expect{ subject.redeploy }.to raise_error(Xway::MissingParameter)
+    expect{ subject.redeploy }.to raise_error(Xploy::MissingParameter)
   end
 
   context 'mock require_options' do
@@ -55,7 +55,7 @@ describe Xway::Api::Endpoints do
       its('path')        { should eq '/applications' }
       its('headers')     { should eq('X-App' => 'appway',
                                      'Content-Type' => 'application/json') }
-      its('body')        { should be_kind_of(Xway::Api::Request::Body) }
+      its('body')        { should be_kind_of(Xploy::Api::Request::Body) }
     end
 
     describe 'find' do

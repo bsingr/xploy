@@ -1,18 +1,18 @@
-# xway
+# xploy
 
 [appway](http://github.com/threez/appway) client written in ruby
 
-[![Gem Version](https://badge.fury.io/rb/xway.png)](https://rubygems.org/gems/xway)
-[![Travis-CI Build Status](https://secure.travis-ci.org/dpree/xway.png)](https://travis-ci.org/dpree/xway)
-[![Coverage Status](https://coveralls.io/repos/dpree/xway/badge.png)](https://coveralls.io/r/dpree/xway)
-[![Dependency Status](https://gemnasium.com/dpree/xway.png)](https://gemnasium.com/dpree/xway)
-[![Code Climate](https://codeclimate.com/github/dpree/xway.png)](https://codeclimate.com/github/dpree/xway)
+[![Gem Version](https://badge.fury.io/rb/xploy.png)](https://rubygems.org/gems/xploy)
+[![Travis-CI Build Status](https://secure.travis-ci.org/dpree/xploy.png)](https://travis-ci.org/dpree/xploy)
+[![Coverage Status](https://coveralls.io/repos/dpree/xploy/badge.png)](https://coveralls.io/r/dpree/xploy)
+[![Dependency Status](https://gemnasium.com/dpree/xploy.png)](https://gemnasium.com/dpree/xploy)
+[![Code Climate](https://codeclimate.com/github/dpree/xploy.png)](https://codeclimate.com/github/dpree/xploy)
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'xway'
+    gem 'xploy'
 
 And then execute:
 
@@ -20,15 +20,15 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install xway
+    $ gem install xploy
 
 ## Usage
 
-    $ xway
+    $ xploy
 
 ### Recommended config settings
 
-You can store default parameters like `app.name` and `app.manifest` in a file named `.xway` located in your current working dir.
+You can store default parameters like `app.name` and `app.manifest` in a file named `.xploy` located in your current working dir.
 
 For an example just have a look at the `appway-example` folder.
 
@@ -36,22 +36,22 @@ For an example just have a look at the `appway-example` folder.
 
 Here you can just redeploy the preconfigured app like so:
 
-    $ xway redeploy
+    $ xploy redeploy
 
 ## Development
 
 To run the binary from the repository use the following command with ruby libray path:
 
-    RUBYLIB=lib bin/xway
+    RUBYLIB=lib bin/xploy
 
 ### Coding guide
 
-* Using global methods like `Xway.parameter`
-  * is allowed for classes / modules defined on the same or a higher level to the `Xway` namespace
-  * is allowed for classes / modules defined excactly one level below the `Xway` namespace
-    * e.g. `Xway::Api`
-  * is not allowed for classes / modules defined more than one level below the `Xway` namespace
-    * e.g. `Xway::Api::Request`
+* Using global methods like `Xploy.parameter`
+  * is allowed for classes / modules defined on the same or a higher level to the `Xploy` namespace
+  * is allowed for classes / modules defined excactly one level below the `Xploy` namespace
+    * e.g. `Xploy::Api`
+  * is not allowed for classes / modules defined more than one level below the `Xploy` namespace
+    * e.g. `Xploy::Api::Request`
     * these classes should use dependency injection instead
 
 ### Contributing

@@ -1,6 +1,6 @@
-require 'xway/api/request/body'
+require 'xploy/api/request/body'
 
-module Xway
+module Xploy
   class Api
     class Request
       attr_reader :method_name, :path, :headers, :body

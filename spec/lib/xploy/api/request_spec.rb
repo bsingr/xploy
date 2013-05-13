@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'xway/api/request'
+require 'xploy/api/request'
 
-describe Xway::Api::Request do
+describe Xploy::Api::Request do
   subject { described_class.new 'get', '/foo' }
 
   its('method_name') { should eq 'get' }

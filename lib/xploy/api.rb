@@ -1,8 +1,8 @@
-require 'xway/api/request'
-require 'xway/api/endpoints'
-require 'xway/api/http'
+require 'xploy/api/request'
+require 'xploy/api/endpoints'
+require 'xploy/api/http'
 
-module Xway
+module Xploy
   class Api
     def request method_name, *args, &block
       http = Http.new
@@ -15,7 +15,7 @@ module Xway
   private
 
     def parameter
-      Xway.parameter
+      Xploy.parameter
     end
 
     def build_request method_name

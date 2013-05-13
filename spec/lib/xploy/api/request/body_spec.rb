@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'xway/error'
-require 'xway/api/request/body'
+require 'xploy/error'
+require 'xploy/api/request/body'
 
-describe Xway::Api::Request::Body do
+describe Xploy::Api::Request::Body do
   context 'unknown file type' do
     let('path') { 'foo/bar' }
     before do
@@ -11,8 +11,8 @@ describe Xway::Api::Request::Body do
     subject { described_class.new path }
     
     its('path') { should eq path }
-    it { expect{subject.mime_type}.to raise_error(Xway::ManifestFileTypeUnsupported) }
-    it { expect{subject.read}.to raise_error(Xway::ManifestFileTypeUnsupported) }
+    it { expect{subject.mime_type}.to raise_error(Xploy::ManifestFileTypeUnsupported) }
+    it { expect{subject.read}.to raise_error(Xploy::ManifestFileTypeUnsupported) }
   end
 
   context 'known file type but not existent' do
@@ -24,7 +24,7 @@ describe Xway::Api::Request::Body do
     
     its('path') { should eq path }
     its('mime_type') { should eq 'application/json' }
-    it { expect{subject.read}.to raise_error(Xway::ManifestFileNotFound) }
+    it { expect{subject.read}.to raise_error(Xploy::ManifestFileNotFound) }
   end
 
   context 'correct file' do
