@@ -24,7 +24,7 @@ describe Xway::Api::Endpoints do
   end
 
   describe 'find' do
-    subject            { endpoints.find app: 'foo' }
+    subject            { endpoints.find name: 'foo' }
     its('method_name') { should eq 'get' }
     its('path')        { should eq '/applications/foo' }
     its('headers')     { should eq('X-App' => 'appway') }
@@ -32,7 +32,7 @@ describe Xway::Api::Endpoints do
   end
 
   describe 'update' do
-    subject            { endpoints.update app: 'foo' }
+    subject            { endpoints.update name: 'foo' }
     its('method_name') { should eq 'put' }
     its('path')        { should eq '/applications/foo' }
     its('headers')     { should eq('X-App' => 'appway') }
@@ -40,7 +40,7 @@ describe Xway::Api::Endpoints do
   end
 
   describe 'delete' do
-    subject            { endpoints.delete app: 'foo' }
+    subject            { endpoints.delete name: 'foo' }
     its('method_name') { should eq 'delete' }
     its('path')        { should eq '/applications/foo' }
     its('headers')     { should eq('X-App' => 'appway') }
@@ -48,7 +48,7 @@ describe Xway::Api::Endpoints do
   end
 
   describe 'log' do
-    subject            { endpoints.log app: 'foo' }
+    subject            { endpoints.log name: 'foo' }
     its('method_name') { should eq 'get' }
     its('path')        { should eq '/applications/foo/log' }
     its('headers')     { should eq('X-App' => 'appway') }
@@ -56,7 +56,7 @@ describe Xway::Api::Endpoints do
   end
 
   describe 'start' do
-    subject            { endpoints.start app: 'foo' }
+    subject            { endpoints.start name: 'foo' }
     its('method_name') { should eq 'post' }
     its('path')        { should eq '/applications/foo/start' }
     its('headers')     { should eq('X-App' => 'appway') }
@@ -64,7 +64,7 @@ describe Xway::Api::Endpoints do
   end
 
   describe 'stop' do
-    subject            { endpoints.stop app: 'foo' }
+    subject            { endpoints.stop name: 'foo' }
     its('method_name') { should eq 'post' }
     its('path')        { should eq '/applications/foo/stop' }
     its('headers')     { should eq('X-App' => 'appway') }
@@ -72,7 +72,7 @@ describe Xway::Api::Endpoints do
   end
 
   describe 'restart' do
-    subject            { endpoints.restart app: 'foo' }
+    subject            { endpoints.restart name: 'foo' }
     its('method_name') { should eq 'post' }
     its('path')        { should eq '/applications/foo/restart' }
     its('headers')     { should eq('X-App' => 'appway') }
@@ -80,7 +80,7 @@ describe Xway::Api::Endpoints do
   end
 
   describe 'redeploy' do
-    subject            { endpoints.redeploy app: 'foo' }
+    subject            { endpoints.redeploy name: 'foo' }
     its('method_name') { should eq 'post' }
     its('path')        { should eq '/applications/foo/redeploy' }
     its('headers')     { should eq('X-App' => 'appway') }
