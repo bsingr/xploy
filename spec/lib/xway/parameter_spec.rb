@@ -63,7 +63,6 @@ describe Xway::Parameter do
 
       it 'defines app.name' do
         param.should_receive('define').with('app.name',
-                                            type: String,
                                             flag: 'a',
                                             description: 'name of your app')
         subject.reload!
@@ -71,7 +70,6 @@ describe Xway::Parameter do
 
       it 'defines app.manifest' do
         param.should_receive('define').with('app.manifest',
-                                            type: String,
                                             flag: 'm',
                                             description: 'path to your app.way file')
         subject.reload!

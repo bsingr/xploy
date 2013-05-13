@@ -8,11 +8,9 @@ module Xway
                                     flag: 's',
                                     description: 'all appway servers',
                                     default: ['http://localhost:8000']
-      @param.define 'app.name',     type: String,
-                                    flag: 'a',
+      @param.define 'app.name',     flag: 'a',
                                     description: 'name of your app'
-      @param.define 'app.manifest', type: String,
-                                    flag: 'm',
+      @param.define 'app.manifest', flag: 'm',
                                     description: 'path to your app.way file'
       @param.define :debug,         flag: 'd',
                                     description: 'print debug info to stdout',
