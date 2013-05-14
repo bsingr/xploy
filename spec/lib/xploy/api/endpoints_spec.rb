@@ -38,8 +38,6 @@ describe Xploy::Api::Endpoints do
   end
 
   context 'mock require_options' do
-    before { endpoints.stub('require_options') }
-
     describe 'list' do
       subject            { endpoints.list({}) }
       its('method_name') { should eq 'get' }

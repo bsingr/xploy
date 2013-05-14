@@ -10,65 +10,44 @@ module Xploy
       end
 
       def find options={}
-        require_options options, :name
-        options[:name] ||= ':name'
-        Request.new 'get', "/applications/#{options[:name]}"
+        Request.new 'get', "/applications/#{extract(options, :name)}"
       end
 
       def update options={}
-        require_options options, :name
-        options[:name] ||= ':name'
-        Request.new 'put', "/applications/#{options[:name]}"
+        Request.new 'put', "/applications/#{extract(options, :name)}"
       end
 
       def delete options={}
-        require_options options, :name
-        options[:name] ||= ':name'
-        Request.new 'delete', "/applications/#{options[:name]}"
+        Request.new 'delete', "/applications/#{extract(options, :name)}"
       end
 
       def log options={}
-        require_options options, :name
-        options[:name] ||= ':name'
-        Request.new 'get', "/applications/#{options[:name]}/log"
+        Request.new 'get', "/applications/#{extract(options, :name)}/log"
       end
 
       def start options={}
-        require_options options, :name
-        options[:name] ||= ':name'
-        Request.new 'post', "/applications/#{options[:name]}/start"
+        Request.new 'post', "/applications/#{extract(options, :name)}/start"
       end
 
       def stop options={}
-        require_options options, :name
-        options[:name] ||= ':name'
-        Request.new 'post', "/applications/#{options[:name]}/stop"
+        Request.new 'post', "/applications/#{extract(options, :name)}/stop"
       end
 
       def restart options={}
-        require_options options, :name
-        options[:name] ||= ':name'
-        Request.new 'post', "/applications/#{options[:name]}/restart"
+        Request.new 'post', "/applications/#{extract(options, :name)}/restart"
       end
 
       def redeploy options={}
-        require_options options, :name
-        options[:name] ||= ':name'
-        Request.new 'post', "/applications/#{options[:name]}/redeploy"
+        Request.new 'post', "/applications/#{extract(options, :name)}/redeploy"
       end
 
     private
 
-      def require_options options, *keys
-        missing_keys = []
-        keys.each do |key|
-          if !options.is_a?(Hash) || options[key] == nil || options[key] == ''
-            missing_keys << key
-          end
-        end
-        unless missing_keys.empty?
-          raise MissingParameter, "Missing app parameter(s): "\
-                                  "#{missing_keys.map(&:to_s).join(', ')}"
+      def extract options, key
+        if !options.is_a?(Hash) || options[key] == nil || options[key] == ''
+          raise MissingParameter, "Missing app parameter '#{key}'"
+        else
+          options[key]
         end
       end
     end
