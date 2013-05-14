@@ -1,3 +1,7 @@
+# next
+
+  * Generate manifest template using `xploy new app.json`
+
 # 0.1.0.beta
 
   * Project rename from 'xway' to 'xploy'

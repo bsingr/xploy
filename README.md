@@ -24,7 +24,18 @@ Or install it yourself as:
 
 ## Usage
 
+Print usage with:
+
     $ xploy
+
+Generate a new app manifest with:
+
+    $ xploy new example.json
+
+Deploy it to your appway instance on `http://localhost:8000` with:
+
+    $ xploy --servers=http://localhost:8000 --app.name=example --app.manifest=example.json
+    OK
 
 ### Recommended Setup
 
