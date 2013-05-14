@@ -13,8 +13,16 @@ describe Xploy::Cli do
   end
   let('api') { double('Xploy::Api') }
   let('out') { double('stdout').tap { |o| o.stub('puts') } }
+  let('template_class') do
+    double('Xway::Template').tap do |mock|
+      template = double('template').tap do |mock|
+        mock.stub('to_s').and_return('template data...')
+      end
+      mock.stub('new').and_return(template)
+    end
+  end
   before { Xploy.stub('parameter').and_return(parameter) }
-  subject { described_class.new api, out }
+  subject { described_class.new api, out, template_class }
 
   it 'prints usage per default' do
     parameter.should_receive('print_help!')
@@ -29,7 +37,7 @@ describe Xploy::Cli do
 
   it 'prints template on new without :template parameter' do
     parameter.stub('[]').with(:template)
-    out.should_receive('puts').with('see appway-example.json')
+    out.should_receive('puts').with('template data...')
     parameter.stub('rest').and_return(['new'])
     subject.start
   end
@@ -39,7 +47,7 @@ describe Xploy::Cli do
       parameter.stub('[]').with(:template).and_return('foo.xploy')
       parameter.stub('rest').and_return(['new'])
       subject.start
-      File.read('foo.xploy').should eq('see appway-example.json')
+      File.read('foo.xploy').should eq('template data...')
     end
   end
 

@@ -1,0 +1,10 @@
+{
+  "name": "example",
+  "repo": {
+    "url": "git://github.com/threez/appway-example.git",
+    "branch": "master"
+  }
+  "install": [
+    "npm install"
+  ]
+}

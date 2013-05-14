@@ -1,8 +1,9 @@
 module Xploy
   class Cli
-    def initialize api, out
+    def initialize api, out, template_class
       @api = api
       @out = out
+      @template_class = template_class
     end
 
     def start
@@ -13,7 +14,7 @@ module Xploy
       elsif commands.empty?
         parameter.print_help!
       elsif commands.first == 'new'
-        template_data = 'see appway-example.json'
+        template_data = @template_class.new.to_s
         if file = parameter[:template]
           File.open(file, 'w') { |f| f.write template_data }
         else
