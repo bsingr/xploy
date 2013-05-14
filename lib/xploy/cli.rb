@@ -12,6 +12,13 @@ module Xploy
         @out.puts "xploy #{VERSION}"
       elsif commands.empty?
         parameter.print_help!
+      elsif commands.first == 'new'
+        template_data = 'see appway-example.json'
+        if file = parameter[:template]
+          File.open(file, 'w') { |f| f.write template_data }
+        else
+          @out.puts template_data
+        end
       else
         @out.puts @api.request(*commands)
       end

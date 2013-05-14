@@ -2,6 +2,7 @@ require 'spec_helper'
 require 'xploy/cli'
 require 'xploy/error'
 require 'xploy/version'
+require 'fakefs/safe'
 
 describe Xploy::Cli do
   let('parameter') do
@@ -14,7 +15,7 @@ describe Xploy::Cli do
   let('out') { double('stdout').tap { |o| o.stub('puts') } }
   before { Xploy.stub('parameter').and_return(parameter) }
   subject { described_class.new api, out }
-  
+
   it 'prints usage per default' do
     parameter.should_receive('print_help!')
     subject.start
@@ -24,6 +25,22 @@ describe Xploy::Cli do
     parameter.stub('[]').with(:version).and_return(true)
     out.should_receive('puts').with("xploy #{Xploy::VERSION}")
     subject.start
+  end
+
+  it 'prints template on new without :template parameter' do
+    parameter.stub('[]').with(:template)
+    out.should_receive('puts').with('see appway-example.json')
+    parameter.stub('rest').and_return(['new'])
+    subject.start
+  end
+
+  it 'writes template on new with :template parameter' do
+    FakeFS do
+      parameter.stub('[]').with(:template).and_return('foo.xploy')
+      parameter.stub('rest').and_return(['new'])
+      subject.start
+      File.read('foo.xploy').should eq('see appway-example.json')
+    end
   end
 
   it 'executes commands on api' do
