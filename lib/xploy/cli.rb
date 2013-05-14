@@ -6,11 +6,12 @@ module Xploy
     end
 
     def start
-      commands = Xploy.parameter.rest
-      if Xploy.parameter[:version]
+      parameter = Xploy.parameter
+      commands = parameter.rest
+      if parameter[:version]
         @out.puts "xploy #{VERSION}"
       elsif commands.empty?
-        Xploy.parameter.print_help!
+        parameter.print_help!
       else
         @out.puts @api.request(*commands)
       end
