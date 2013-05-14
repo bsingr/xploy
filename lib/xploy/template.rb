@@ -12,7 +12,8 @@ __END__
   "repo": {
     "url": "git://github.com/threez/appway-example.git",
     "branch": "master"
-  }
+  },
+  "packages": {},
   "install": [
     "npm install"
   ]
