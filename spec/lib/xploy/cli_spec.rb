@@ -35,17 +35,15 @@ describe Xploy::Cli do
     subject.start
   end
 
-  it 'prints template on new without :template parameter' do
-    parameter.stub('[]').with(:template)
+  it 'prints template on new without path' do
     out.should_receive('puts').with('template data...')
     parameter.stub('rest').and_return(['new'])
     subject.start
   end
 
-  it 'writes template on new with :template parameter' do
+  it 'writes template on new with path' do
     FakeFS do
-      parameter.stub('[]').with(:template).and_return('foo.xploy')
-      parameter.stub('rest').and_return(['new'])
+      parameter.stub('rest').and_return(['new', 'foo.xploy'])
       subject.start
       File.read('foo.xploy').should eq('template data...')
     end

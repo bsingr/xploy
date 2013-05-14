@@ -15,8 +15,8 @@ module Xploy
         parameter.print_help!
       elsif commands.first == 'new'
         template_data = @template_class.new.to_s
-        if file = parameter[:template]
-          File.open(file, 'w') { |f| f.write template_data }
+        if path = commands[1]
+          File.open(path, 'w') { |f| f.write template_data }
         else
           @out.puts template_data
         end
