@@ -1,4 +1,4 @@
-# next
+# 0.1.1.beta
 
   * Generate manifest template using `xploy new app.json`
 
