@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 
 require 'xploy'
-Xploy::Cli.new.start
+Xploy.build_cli.start

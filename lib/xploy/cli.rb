@@ -1,6 +1,6 @@
 module Xploy
   class Cli
-    def initialize api=Api.new, out=STDOUT
+    def initialize api, out
       @api = api
       @out = out
     end

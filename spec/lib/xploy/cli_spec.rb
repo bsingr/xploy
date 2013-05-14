@@ -14,23 +14,6 @@ describe Xploy::Cli do
   let('out') { double('stdout').tap { |o| o.stub('puts') } }
   before { Xploy.stub('parameter').and_return(parameter) }
   subject { described_class.new api, out }
-
-  context 'default' do
-    let!('api_class') do
-      Xploy::Api = double('api_class').tap do |mock|
-        mock.stub('new').and_return(api)
-      end
-    end
-    subject { described_class.new }
-  
-    it 'uses Api' do
-      subject.instance_variable_get('@api').should eq api
-    end
-
-    it 'uses STDOUT' do
-      subject.instance_variable_get('@out').should eq STDOUT
-    end
-  end
   
   it 'prints usage per default' do
     parameter.should_receive('print_help!')
