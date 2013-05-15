@@ -30,11 +30,11 @@ Print usage with:
 
 Generate a new app manifest with:
 
-    $ xploy new example.json
+    $ xploy new example
 
 Deploy it to your appway instance on `http://localhost:8000` with:
 
-    $ xploy create --servers=http://localhost:8000 --app.name=example --app.manifest=example.json
+    $ xploy create --servers=http://localhost:8000 --app.name=example --app.manifest=example.xploy
     OK
 
 ### Recommended Setup

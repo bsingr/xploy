@@ -32,8 +32,8 @@ module Xploy
 
     def render_template
       template_data = @template_class.new.to_s
-      if path = commands[1]
-        File.open(path, 'w') { |f| f.write template_data }
+      if app_name = commands[1]
+        File.open(app_name + '.xploy', 'w') { |f| f.write template_data }
       else
         @out.puts template_data
       end

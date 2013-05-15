@@ -43,7 +43,7 @@ describe Xploy::Cli do
 
   it 'writes template on new with path' do
     FakeFS do
-      parameter.stub('rest').and_return(['new', 'foo.xploy'])
+      parameter.stub('rest').and_return(['new', 'foo'])
       subject.start
       File.read('foo.xploy').should eq('template data...')
     end
