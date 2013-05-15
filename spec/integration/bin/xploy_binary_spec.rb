@@ -11,8 +11,12 @@ class XployBinary
   end
 end
 
-describe XployBinary do
-  before { subject.run }
+describe XployBinary, profile: false do
+  before(:all) do
+    @binary = described_class.new
+    @binary.run
+  end
+  subject { @binary }
   its('stderr.readlines.to_s') { should_not include('xploy') }
   its('stdout.readlines.to_s') { should include(Xploy::VERSION) }
 end
