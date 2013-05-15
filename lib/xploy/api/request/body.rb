@@ -28,7 +28,7 @@ module Xploy
 
         def check_type
           extname = File.extname(path)
-          if extname == '.json'
+          if ['.json', '.xploy'].include? extname
             yield extname
           else
             raise ManifestFileTypeUnsupported, \

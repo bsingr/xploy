@@ -27,8 +27,8 @@ describe Xploy::Api::Request::Body do
     it { expect{subject.read}.to raise_error(Xploy::ManifestFileNotFound) }
   end
 
-  context 'correct file' do
-    let('path') { 'foo/bar.json' }
+  shared_examples_for 'correct_file' do |extname|
+    let('path') { 'foo/bar'+extname }
     before do
       File.stub('exists?').with(path).and_return(true)
       File.stub('read').with(path).and_return('example data')
@@ -38,5 +38,13 @@ describe Xploy::Api::Request::Body do
     its('path') { should eq path }
     its('mime_type') { should eq 'application/json' }
     its('read') { should eq 'example data' }
+  end
+
+  context 'correct file .json' do
+    it_behaves_like 'correct_file', '.json'
+  end
+
+  context 'correct file .xploy' do
+    it_behaves_like 'correct_file', '.xploy'
   end
 end
