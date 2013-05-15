@@ -7,24 +7,36 @@ module Xploy
     end
 
     def start
-      parameter = Xploy.parameter
-      commands = parameter.rest
       if parameter[:version]
         @out.puts "xploy #{VERSION}"
       elsif commands.empty?
         parameter.print_help!
       elsif commands.first == 'new'
-        template_data = @template_class.new.to_s
-        if path = commands[1]
-          File.open(path, 'w') { |f| f.write template_data }
-        else
-          @out.puts template_data
-        end
+        render_template
       else
         @out.puts @api.request(*commands)
       end
     rescue MissingParameter => e
       @out.puts e.message
+    end
+
+  private
+
+    def parameter
+      Xploy.parameter
+    end
+
+    def commands
+      parameter.rest
+    end
+
+    def render_template
+      template_data = @template_class.new.to_s
+      if path = commands[1]
+        File.open(path, 'w') { |f| f.write template_data }
+      else
+        @out.puts template_data
+      end
     end
   end
 end
