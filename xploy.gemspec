@@ -28,4 +28,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'terminal-notifier-guard'
   gem.add_development_dependency 'coveralls'
   gem.add_development_dependency 'fakefs'
+  gem.add_development_dependency 'ruby-prof'
 end
