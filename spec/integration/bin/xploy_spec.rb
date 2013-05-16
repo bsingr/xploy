@@ -11,9 +11,9 @@ class XployBinary
   end
 end
 
-describe XployBinary, profile: false do
+describe Xploy, profile: false do
   before(:all) do
-    @binary = described_class.new
+    @binary = XployBinary.new
     @binary.run
   end
   subject { @binary }
