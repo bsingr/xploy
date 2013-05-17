@@ -12,11 +12,10 @@ class XployBinary
 end
 
 describe Xploy, profile: false do
-  before(:all) do
-    @binary = XployBinary.new
-    @binary.run
+  it 'just prints the version to stdout' do
+    binary = XployBinary.new
+    binary.run
+    binary.stderr.readlines.to_s.should_not include('xploy')
+    binary.stdout.readlines.to_s.should include(Xploy::VERSION)
   end
-  subject { @binary }
-  its('stderr.readlines.to_s') { should_not include('xploy') }
-  its('stdout.readlines.to_s') { should include(Xploy::VERSION) }
 end
