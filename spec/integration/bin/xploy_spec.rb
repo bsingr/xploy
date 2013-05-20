@@ -11,7 +11,7 @@ class XployBinary
   end
 end
 
-describe Xploy, profile: false do
+describe XployBinary do
   it 'just prints the version to stdout' do
     binary = XployBinary.new
     binary.run
